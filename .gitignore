@@ -31,10 +31,10 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
-lib/constants.dart
 
 # Web related
 lib/generated_plugin_registrant.dart
+lib/constants.dart
 
 # Symbolication related
 app.*.symbols
