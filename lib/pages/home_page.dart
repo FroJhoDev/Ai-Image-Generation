@@ -34,22 +34,15 @@ class _HomePageState extends State<HomePage> {
           content: Text('Imagem Salva na Galeria'),
         ));
       }
-
-      var fileName = await ImageDownloader.findName(imageId);
-      var path = await ImageDownloader.findPath(imageId);
-      var size = await ImageDownloader.findByteSize(imageId);
-      var mimeType = await ImageDownloader.findMimeType(imageId);
     } on PlatformException catch (error) {
-      print(error);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        backgroundColor: Colors.red,
+        content: Text(error.toString()),
+      ));
     }
   }
 
-  // void _changeRandomPromptText() {
-  //   _textEditingController.text = RandomPrompts
-  //       .promptsList[Random().nextInt(RandomPrompts.promptsList.length)];
-  // }
-
-  void _clear() {
+  void _clearPrompText() {
     _textEditingController.clear();
   }
 
@@ -86,7 +79,8 @@ class _HomePageState extends State<HomePage> {
               labelText: 'Descreva a imagem à ser gerada',
               hintText: 'Ex: a white siamese cat',
               prefixIcon: InkWell(
-                  onTap: () => {_clear()}, child: const Icon(Icons.close)),
+                  onTap: () => {_clearPrompText()},
+                  child: const Icon(Icons.close)),
             ),
             controller: _textEditingController,
           ),
@@ -144,7 +138,7 @@ class _HomePageState extends State<HomePage> {
                 child: OutlinedButton(
                   onPressed: () {
                     bloc.add(ClearResults());
-                    _clear();
+                    _clearPrompText();
                   },
                   style: OutlinedButton.styleFrom(
                     side: const BorderSide(
