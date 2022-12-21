@@ -25,8 +25,6 @@ class ImageGenerationsRepository {
         ),
       );
 
-      print(response.body);
-
       if (response.statusCode == 200) {
         final Map<String, dynamic> imageData = json.decode(response.body);
         List<ImageGenerationsModel> imageGerationsList = (imageData['data']

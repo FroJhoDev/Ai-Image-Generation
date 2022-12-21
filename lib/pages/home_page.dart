@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_downloader/image_downloader.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
 import 'package:ai_image_generetor/blocs/image_generations_bloc.dart';
 import 'package:ai_image_generetor/blocs/image_generations_events.dart';
@@ -22,6 +23,16 @@ class _HomePageState extends State<HomePage> {
 
   String _imageSize = '512x512';
   String _imageNumber = '4';
+
+  Future<bool> checkInternetConnectivity() async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+
+    if (connectivityResult == ConnectivityResult.wifi) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   void _downloadImg(String url, BuildContext context) async {
     try {
@@ -118,14 +129,61 @@ class _HomePageState extends State<HomePage> {
                 child: ElevatedButton(
                   onPressed: () {
                     if (_textEditingController.value.toString().isNotEmpty) {
-                      bloc.add(
-                        GenerateImagesEvent(
-                          prompText: _textEditingController.value.toString(),
-                          imgSize: _imageSize,
-                          imgNumber: _imageNumber,
-                        ),
-                      );
-                      _saveOnLocalStorage(_textEditingController.text);
+                      checkInternetConnectivity().then((isTrue) {
+                        print(true);
+                        if (isTrue) {
+                          bloc.add(
+                            GenerateImagesEvent(
+                              prompText:
+                                  _textEditingController.value.toString(),
+                              imgSize: _imageSize,
+                              imgNumber: _imageNumber,
+                            ),
+                          );
+                          _saveOnLocalStorage(_textEditingController.text);
+                        } else {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: const Text("Alerta de Conectividade"),
+                                  content: const Text(
+                                      "Você esta utilizando os dados móveis, a geração de imagens demanda uma grande quantidade de banda. Cogite se conectar a uma rede wifi e tente novamente."),
+                                  actions: [
+                                    OutlinedButton(
+                                      style: OutlinedButton.styleFrom(
+                                        foregroundColor: Colors.blueGrey,
+                                      ),
+                                      child: const Text("Cancelar"),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                    OutlinedButton(
+                                      style: OutlinedButton.styleFrom(
+                                        foregroundColor: Colors.blue,
+                                      ),
+                                      child: const Text("Continuar"),
+                                      onPressed: () {
+                                        bloc.add(
+                                          GenerateImagesEvent(
+                                            prompText: _textEditingController
+                                                .value
+                                                .toString(),
+                                            imgSize: _imageSize,
+                                            imgNumber: _imageNumber,
+                                          ),
+                                        );
+                                        _saveOnLocalStorage(
+                                            _textEditingController.text);
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                  ],
+                                );
+                              });
+                        }
+                      });
                     }
                   },
                   child: const Text('Gerar'),

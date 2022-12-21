@@ -39,6 +39,8 @@ dependencies:
   flutter_bloc: ^8.1.1
   image_downloader: ^0.31.0
   shared_preferences: ^2.0.15
+  connectivity_plus: ^3.0.2
+  flutter_launcher_icons: ^0.11.0
 
 dev_dependencies:
   flutter_test:
@@ -73,6 +75,11 @@ flutter:
     - assets/images/tips_img_04.jpeg
     - assets/images/tips_img_05.jpeg
     - assets/images/tips_img_06.jpeg
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/ai_image_generation_icon.png"
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
