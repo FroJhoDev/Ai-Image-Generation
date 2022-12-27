@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:ai_image_generetor/pages/home_page.dart';
-import 'package:ai_image_generetor/pages/tips_page.dart';
+import 'package:ai_image_generetor/pages/text_completions_page.dart';
 import 'package:ai_image_generetor/pages/historic_page.dart';
+import 'package:ai_image_generetor/pages/tips_page.dart';
 
 class BottomNavigationBarWidget extends StatefulWidget {
   final int currentIndex;
@@ -24,6 +25,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
     super.initState();
     pages = const [
       HomePage(),
+      TextCompletionsPage(),
       HistoricPage(),
       TipsPage(),
     ];
@@ -52,11 +54,18 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
               duration: const Duration(milliseconds: 300), curve: Curves.ease);
         },
         items: const [
-          BottomNavigationBarItem(label: 'Início', icon: Icon(Icons.home_outlined)),
+          BottomNavigationBarItem(
+              label: 'Gerar Imagens', icon: Icon(Icons.image_search)),
+          BottomNavigationBarItem(
+              label: 'Gerar Textos', icon: Icon(Icons.text_fields)),
           BottomNavigationBarItem(
               label: 'Histórico', icon: Icon(Icons.history)),
-          BottomNavigationBarItem(label: 'Dicas', icon: Icon(Icons.lightbulb_outline)),
+          BottomNavigationBarItem(
+              label: 'Dicas', icon: Icon(Icons.lightbulb_outline)),
         ],
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: Colors.blue,
+        unselectedItemColor: Colors.lightBlueAccent,
       ),
     );
   }

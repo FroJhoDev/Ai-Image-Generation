@@ -1,3 +1,4 @@
+import 'package:ai_image_generetor/functions/clipboard_function.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -35,16 +36,8 @@ class _PromptExapleCardWidgetState extends State<PromptExapleCardWidget> {
                       buttonPadding: const EdgeInsets.all(0),
                       children: <Widget>[
                         IconButton(
-                          onPressed: () async {
-                            await Clipboard.setData(
-                                ClipboardData(text: widget.promptText));
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(const SnackBar(
-                              backgroundColor: Colors.black87,
-                              content:
-                                  Text('Copiado para Área de Transferência'),
-                            ));
-                          },
+                          onPressed: () async =>
+                              copyToClipboard(widget.promptText, context),
                           icon: const Icon(Icons.copy),
                         ),
                       ],

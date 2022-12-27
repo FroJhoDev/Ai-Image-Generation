@@ -1,3 +1,4 @@
+import 'package:ai_image_generetor/functions/clipboard_function.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -58,17 +59,11 @@ class _HistoricPageState extends State<HistoricPage> {
               spacing: 15.0,
               children: [
                 InkWell(
-                  onTap: () async {
-                    await Clipboard.setData(
-                        ClipboardData(text: promptsList[index]));
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      backgroundColor: Colors.black87,
-                      content: Text('Copiado para Área de Transferência'),
-                    ));
-                  },
+                  onTap: () async =>
+                      copyToClipboard(promptsList[index], context),
                   child: const Icon(
                     Icons.copy,
-                    color: Colors.blue,
+                    color: Colors.lightBlueAccent,
                   ),
                 ),
                 InkWell(
@@ -81,7 +76,7 @@ class _HistoricPageState extends State<HistoricPage> {
                   },
                   child: const Icon(
                     Icons.delete_outline,
-                    color: Colors.red,
+                    color: Colors.redAccent,
                   ),
                 )
               ],

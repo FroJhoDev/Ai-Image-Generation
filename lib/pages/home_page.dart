@@ -130,7 +130,6 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () {
                     if (_textEditingController.value.toString().isNotEmpty) {
                       checkInternetConnectivity().then((isTrue) {
-                        print(true);
                         if (isTrue) {
                           bloc.add(
                             GenerateImagesEvent(
@@ -201,7 +200,7 @@ class _HomePageState extends State<HomePage> {
                   style: OutlinedButton.styleFrom(
                     side: const BorderSide(
                       width: 3.0,
-                      color: Colors.blue,
+                      color: Colors.lightBlueAccent,
                     ),
                   ),
                   child: const Text('Limpar'),
