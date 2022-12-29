@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class ApiConstants {
   static String baseUrl = 'https://api.openai.com/v1';
   static String generationsEndpoint = '/images/generations';
@@ -23,3 +25,11 @@ class RandomPrompts {
     'The white fox in the Arcadian praerie | Breath-taking digital painting with vivid colours amazing art mesmerizing, captivating, artstation 3, japanese style',
   ];
 }
+
+
+// Colors that we use in our app
+const Color kPrimaryColor = Color.fromRGBO(1, 81, 89, 1);
+const Color kSecondaryColor = Color.fromRGBO(242, 135, 5, 1);
+const Color kIconButtonColor = Color.fromRGBO(3, 140, 140, 1);
+const Color kTextColor = Color.fromRGBO(1, 81, 89, 1);
+const Color kBackgroundColor = Color(0xFFF9F8FD);
