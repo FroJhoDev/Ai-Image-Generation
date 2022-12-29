@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import 'package:ai_image_generetor/pages/home_page.dart';
 import 'package:ai_image_generetor/pages/text_completions_page.dart';
+import 'package:ai_image_generetor/pages/instagram_post_page.dart';
 import 'package:ai_image_generetor/pages/historic_page.dart';
 import 'package:ai_image_generetor/pages/tips_page.dart';
+import 'package:ai_image_generetor/constants.dart';
 
 class BottomNavigationBarWidget extends StatefulWidget {
   final int currentIndex;
@@ -26,6 +29,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
     pages = const [
       HomePage(),
       TextCompletionsPage(),
+      InstagramPostPage(),
       HistoricPage(),
       TipsPage(),
     ];
@@ -39,6 +43,10 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
       appBar: AppBar(
         title: const Text('IA Generation'),
         centerTitle: true,
+        backgroundColor: kPrimaryColor,
+        actions: [
+          IconButton(onPressed: (){}, icon: const Icon(MdiIcons.menu))
+        ],
       ),
       body: PageView(
         controller: _bottomBarPageController,
@@ -55,17 +63,19 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
         },
         items: const [
           BottomNavigationBarItem(
-              label: 'Gerar Imagens', icon: Icon(Icons.image_search)),
+              label: 'Imagens', icon: Icon(MdiIcons.imageFrame)),
           BottomNavigationBarItem(
-              label: 'Gerar Textos', icon: Icon(Icons.text_fields)),
+              label: 'Textos', icon: Icon(MdiIcons.cardTextOutline)),
+          BottomNavigationBarItem(
+              label: 'Instagram', icon: Icon(MdiIcons.instagram)),
           BottomNavigationBarItem(
               label: 'Histórico', icon: Icon(Icons.history)),
           BottomNavigationBarItem(
               label: 'Dicas', icon: Icon(Icons.lightbulb_outline)),
         ],
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.lightBlueAccent,
+        selectedItemColor: kSecondaryColor,
+        unselectedItemColor: kPrimaryColor,
       ),
     );
   }

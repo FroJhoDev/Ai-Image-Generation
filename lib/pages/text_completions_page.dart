@@ -1,6 +1,8 @@
 import 'package:ai_image_generetor/blocs/text_completions_events.dart';
 import 'package:ai_image_generetor/blocs/text_completions_state.dart';
 import 'package:ai_image_generetor/functions/clipboard_function.dart';
+import 'package:ai_image_generetor/widgets/primary_button_widget.dart';
+import 'package:ai_image_generetor/widgets/secondary_button_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ai_image_generetor/blocs/text_completions_bloc.dart';
@@ -50,35 +52,28 @@ class _TextCompletionsPageState extends State<TextCompletionsPage> {
           Row(
             children: [
               Expanded(
-                child: ElevatedButton(
-                  onPressed: () {
-                    if (_textEditingController.value.toString().isNotEmpty) {
-                      bloc.add(
-                        CompletionsTextEvent(
-                          prompText: _textEditingController.value.toString(),
-                        ),
-                      );
-                    }
-                  },
-                  child: const Text('Gerar Textos'),
-                ),
-              ),
+                  child: PrimaryButtonWidget(
+                buttonText: 'Gerar Textos',
+                buttonFunction: () {
+                  if (_textEditingController.value.toString().isNotEmpty) {
+                    bloc.add(
+                      CompletionsTextEvent(
+                        prompText: _textEditingController.value.toString(),
+                      ),
+                    );
+                  }
+                },
+              )),
               const SizedBox(
                 width: 15.0,
               ),
               Expanded(
-                child: OutlinedButton(
-                  onPressed: () {
+                child: SecondaryButtonWidget(
+                  buttonText: 'Resetar',
+                  buttonFunction: () {
                     bloc.add(ClearCompletionsResults());
                     _textEditingController.clear();
                   },
-                  style: OutlinedButton.styleFrom(
-                    side: const BorderSide(
-                      width: 3.0,
-                      color: Colors.lightBlueAccent,
-                    ),
-                  ),
-                  child: const Text('Resetar'),
                 ),
               ),
             ],
@@ -153,46 +148,6 @@ class _TextCompletionsPageState extends State<TextCompletionsPage> {
               );
             },
           ),
-          // Card(
-          //   elevation: 5,
-          //   color: Colors.grey[100],
-          //   child: SizedBox(
-          //       width: MediaQuery.of(context).size.width,
-          //       child: Column(
-          //         children: [
-          //           Padding(
-          //             padding: const EdgeInsets.all(15.0),
-          //             child: Row(
-          //               children: const [
-          //                 Expanded(
-          //                   child: Text(
-          //                     '" ' +
-          //                         'Try giving more clues. In some cases to better help the models generation' +
-          //                         ' "',
-          //                     style: TextStyle(fontSize: 16.0),
-          //                   ),
-          //                 ),
-          //               ],
-          //             ),
-          //           ),
-          //           Row(
-          //             mainAxisAlignment: MainAxisAlignment.end,
-          //             children: [
-          //               ButtonBar(
-          //                 alignment: MainAxisAlignment.end,
-          //                 buttonPadding: const EdgeInsets.all(0),
-          //                 children: <Widget>[
-          //                   IconButton(
-          //                     onPressed: () async {},
-          //                     icon: const Icon(Icons.copy),
-          //                   ),
-          //                 ],
-          //               ),
-          //             ],
-          //           )
-          //         ],
-          //       )),
-          // ),
         ],
       ),
     );

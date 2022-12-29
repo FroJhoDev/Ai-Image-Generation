@@ -1,7 +1,8 @@
-import 'package:ai_image_generetor/functions/clipboard_function.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:ai_image_generetor/constants.dart';
+import 'package:ai_image_generetor/functions/clipboard_function.dart';
 
 class HistoricPage extends StatefulWidget {
   const HistoricPage({super.key});
@@ -63,7 +64,7 @@ class _HistoricPageState extends State<HistoricPage> {
                       copyToClipboard(promptsList[index], context),
                   child: const Icon(
                     Icons.copy,
-                    color: Colors.lightBlueAccent,
+                    color: kIconButtonColor,
                   ),
                 ),
                 InkWell(
@@ -76,7 +77,7 @@ class _HistoricPageState extends State<HistoricPage> {
                   },
                   child: const Icon(
                     Icons.delete_outline,
-                    color: Colors.redAccent,
+                    color: kSecondaryColor,
                   ),
                 )
               ],

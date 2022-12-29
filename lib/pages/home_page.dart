@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_downloader/image_downloader.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 
 import 'package:ai_image_generetor/blocs/image_generations_bloc.dart';
 import 'package:ai_image_generetor/blocs/image_generations_events.dart';
 import 'package:ai_image_generetor/blocs/image_generations_state.dart';
 import 'package:ai_image_generetor/widgets/image_dialog_widget.dart';
+import 'package:ai_image_generetor/widgets/primary_button_widget.dart';
+import 'package:ai_image_generetor/widgets/secondary_button_widget.dart';
+import 'package:ai_image_generetor/functions/check_connectivity_function.dart';
+import 'package:ai_image_generetor/functions/download_image_function.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -23,35 +24,6 @@ class _HomePageState extends State<HomePage> {
 
   String _imageSize = '512x512';
   String _imageNumber = '4';
-
-  Future<bool> checkInternetConnectivity() async {
-    var connectivityResult = await (Connectivity().checkConnectivity());
-
-    if (connectivityResult == ConnectivityResult.wifi) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  void _downloadImg(String url, BuildContext context) async {
-    try {
-      var imageId = await ImageDownloader.downloadImage(url);
-      if (imageId == null) {
-        return;
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          backgroundColor: Colors.green,
-          content: Text('Imagem Salva na Galeria'),
-        ));
-      }
-    } on PlatformException catch (error) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        backgroundColor: Colors.red,
-        content: Text(error.toString()),
-      ));
-    }
-  }
 
   void _clearPrompText() {
     _textEditingController.clear();
@@ -126,84 +98,76 @@ class _HomePageState extends State<HomePage> {
           Row(
             children: [
               Expanded(
-                child: ElevatedButton(
-                  onPressed: () {
-                    if (_textEditingController.value.toString().isNotEmpty) {
-                      checkInternetConnectivity().then((isTrue) {
-                        if (isTrue) {
-                          bloc.add(
-                            GenerateImagesEvent(
-                              prompText:
-                                  _textEditingController.value.toString(),
-                              imgSize: _imageSize,
-                              imgNumber: _imageNumber,
-                            ),
-                          );
-                          _saveOnLocalStorage(_textEditingController.text);
-                        } else {
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: const Text("Alerta de Conectividade"),
-                                  content: const Text(
-                                      "Você esta utilizando os dados móveis, a geração de imagens demanda uma grande quantidade de banda. Cogite se conectar a uma rede wifi e tente novamente."),
-                                  actions: [
-                                    OutlinedButton(
-                                      style: OutlinedButton.styleFrom(
-                                        foregroundColor: Colors.blueGrey,
-                                      ),
-                                      child: const Text("Cancelar"),
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
+                  child: PrimaryButtonWidget(
+                buttonText: 'Gerar Imagens',
+                buttonFunction: () {
+                  if (_textEditingController.value.toString().isNotEmpty) {
+                    checkInternetConnectivity().then((isTrue) {
+                      if (isTrue) {
+                        bloc.add(
+                          GenerateImagesEvent(
+                            prompText: _textEditingController.value.toString(),
+                            imgSize: _imageSize,
+                            imgNumber: _imageNumber,
+                          ),
+                        );
+                        _saveOnLocalStorage(_textEditingController.text);
+                      } else {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: const Text("Alerta de Conectividade"),
+                                content: const Text(
+                                    "Você esta utilizando os dados móveis, a geração de imagens demanda uma grande quantidade de banda. Cogite se conectar a uma rede wifi e tente novamente."),
+                                actions: [
+                                  OutlinedButton(
+                                    style: OutlinedButton.styleFrom(
+                                      foregroundColor: Colors.blueGrey,
                                     ),
-                                    OutlinedButton(
-                                      style: OutlinedButton.styleFrom(
-                                        foregroundColor: Colors.blue,
-                                      ),
-                                      child: const Text("Continuar"),
-                                      onPressed: () {
-                                        bloc.add(
-                                          GenerateImagesEvent(
-                                            prompText: _textEditingController
-                                                .value
-                                                .toString(),
-                                            imgSize: _imageSize,
-                                            imgNumber: _imageNumber,
-                                          ),
-                                        );
-                                        _saveOnLocalStorage(
-                                            _textEditingController.text);
-                                        Navigator.of(context).pop();
-                                      },
+                                    child: const Text("Cancelar"),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                  OutlinedButton(
+                                    style: OutlinedButton.styleFrom(
+                                      foregroundColor: Colors.blue,
                                     ),
-                                  ],
-                                );
-                              });
-                        }
-                      });
-                    }
-                  },
-                  child: const Text('Gerar'),
-                ),
-              ),
+                                    child: const Text("Continuar"),
+                                    onPressed: () {
+                                      bloc.add(
+                                        GenerateImagesEvent(
+                                          prompText: _textEditingController
+                                              .value
+                                              .toString(),
+                                          imgSize: _imageSize,
+                                          imgNumber: _imageNumber,
+                                        ),
+                                      );
+                                      _saveOnLocalStorage(
+                                          _textEditingController.text);
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                ],
+                              );
+                            });
+                      }
+                    });
+                  }
+                },
+              )),
               const SizedBox(
                 width: 15.0,
               ),
               Expanded(
-                child: OutlinedButton(
-                  onPressed: () {
+                child: SecondaryButtonWidget(
+                  buttonText: 'Limpar',
+                  buttonFunction: () {
                     bloc.add(ClearResults());
                     _clearPrompText();
                   },
-                  style: OutlinedButton.styleFrom(
-                    side: const BorderSide(
-                      width: 3.0,
-                      color: Colors.lightBlueAccent,
-                    ),
-                  ),
-                  child: const Text('Limpar'),
                 ),
               ),
             ],
@@ -258,7 +222,7 @@ class _HomePageState extends State<HomePage> {
                               children: <Widget>[
                                 IconButton(
                                   onPressed: () {
-                                    _downloadImg(
+                                    downloadImg(
                                         imgGeneratedList[index].url.toString(),
                                         context);
                                   },

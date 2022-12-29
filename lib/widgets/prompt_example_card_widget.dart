@@ -1,6 +1,6 @@
+import 'package:ai_image_generetor/constants.dart';
 import 'package:ai_image_generetor/functions/clipboard_function.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class PromptExapleCardWidget extends StatefulWidget {
   final String imageUrl;
@@ -38,7 +38,10 @@ class _PromptExapleCardWidgetState extends State<PromptExapleCardWidget> {
                         IconButton(
                           onPressed: () async =>
                               copyToClipboard(widget.promptText, context),
-                          icon: const Icon(Icons.copy),
+                          icon: const Icon(
+                            Icons.copy,
+                            color: kIconButtonColor,
+                          ),
                         ),
                       ],
                     ),
