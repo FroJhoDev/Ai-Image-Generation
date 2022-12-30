@@ -1,13 +1,12 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:ai_image_generetor/blocs/text_completions_bloc.dart';
 import 'package:ai_image_generetor/blocs/text_completions_events.dart';
 import 'package:ai_image_generetor/blocs/text_completions_state.dart';
 import 'package:ai_image_generetor/functions/clipboard_function.dart';
 import 'package:ai_image_generetor/widgets/primary_button_widget.dart';
 import 'package:ai_image_generetor/widgets/secondary_button_widget.dart';
-import 'package:flutter/material.dart';
-
-import 'package:ai_image_generetor/blocs/text_completions_bloc.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TextCompletionsPage extends StatefulWidget {
   const TextCompletionsPage({super.key});
