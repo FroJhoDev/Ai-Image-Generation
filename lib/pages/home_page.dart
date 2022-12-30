@@ -8,6 +8,8 @@ import 'package:ai_image_generetor/blocs/image_generations_state.dart';
 import 'package:ai_image_generetor/widgets/image_dialog_widget.dart';
 import 'package:ai_image_generetor/widgets/primary_button_widget.dart';
 import 'package:ai_image_generetor/widgets/secondary_button_widget.dart';
+import 'package:ai_image_generetor/widgets/custom_circular_progress_widget.dart';
+import 'package:ai_image_generetor/widgets/default_text_field_widget.dart';
 import 'package:ai_image_generetor/functions/check_connectivity_function.dart';
 import 'package:ai_image_generetor/functions/download_image_function.dart';
 
@@ -24,10 +26,6 @@ class _HomePageState extends State<HomePage> {
 
   String _imageSize = '512x512';
   String _imageNumber = '4';
-
-  void _clearPrompText() {
-    _textEditingController.clear();
-  }
 
   _saveOnLocalStorage(String prompText) async {
     final prefs = await SharedPreferences.getInstance();
@@ -57,16 +55,21 @@ class _HomePageState extends State<HomePage> {
       padding: const EdgeInsets.all(20.0),
       child: Column(
         children: [
-          TextField(
-            decoration: InputDecoration(
-              labelText: 'Descreva a imagem à ser gerada',
-              hintText: 'Ex: a white siamese cat',
-              prefixIcon: InkWell(
-                  onTap: () => {_clearPrompText()},
-                  child: const Icon(Icons.close)),
-            ),
-            controller: _textEditingController,
+          DefaultTextFieldWidget(
+            labelText: 'Descreva a imagem à ser gerada',
+            hintText: 'Ex: a white siamese cat',
+            textEditingController: _textEditingController,
           ),
+          // TextField(
+          //   decoration: InputDecoration(
+          //     labelText: 'Descreva a imagem à ser gerada',
+          //     hintText: 'Ex: a white siamese cat',
+          //     prefixIcon: InkWell(
+          //         onTap: () => {_clearPrompText()},
+          //         child: const Icon(Icons.close)),
+          //   ),
+          //   controller: _textEditingController,
+          // ),
           const SizedBox(height: 10.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -166,7 +169,7 @@ class _HomePageState extends State<HomePage> {
                   buttonText: 'Limpar',
                   buttonFunction: () {
                     bloc.add(ClearResults());
-                    _clearPrompText();
+                    _textEditingController.clear();
                   },
                 ),
               ),
@@ -177,11 +180,7 @@ class _HomePageState extends State<HomePage> {
             bloc: bloc,
             builder: (context, state) {
               if (state is ImageGenerationsInProgressState) {
-                return const Expanded(
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                );
+                return const CustomCircularProgressWidget();
               } else if (state is ImageGenerationsSuccessState) {
                 final imgGeneratedList = state.imageGenerations;
 

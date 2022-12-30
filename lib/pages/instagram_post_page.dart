@@ -1,13 +1,15 @@
-import 'package:ai_image_generetor/blocs/instagram_generation_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import 'package:ai_image_generetor/blocs/instagram_generation_bloc.dart';
 import 'package:ai_image_generetor/blocs/instagram_generation_events.dart';
+import 'package:ai_image_generetor/blocs/instagram_generation_state.dart';
 
 import 'package:ai_image_generetor/widgets/primary_button_widget.dart';
 import 'package:ai_image_generetor/widgets/secondary_button_widget.dart';
+import 'package:ai_image_generetor/widgets/custom_circular_progress_widget.dart';
+import 'package:ai_image_generetor/widgets/default_text_field_widget.dart';
 
 class InstagramPostPage extends StatefulWidget {
   const InstagramPostPage({super.key});
@@ -43,40 +45,25 @@ class _InstagramPostPageState extends State<InstagramPostPage> {
       padding: const EdgeInsets.all(20.0),
       child: Column(
         children: [
-          TextField(
-            decoration: InputDecoration(
-              labelText: 'Descreva a imagem da postagem',
-              hintText:
-                  'Ex: Uma sanduíche com carne e alface em uma mesa, fundo preto',
-              prefixIcon: InkWell(
-                  onTap: () => {_imageEditingController.clear()},
-                  child: const Icon(Icons.close)),
-            ),
-            controller: _imageEditingController,
+          DefaultTextFieldWidget(
+            labelText: 'Descreva a imagem da postagem',
+            hintText:
+                'Ex: Uma sanduíche com carne e alface em uma mesa, fundo preto',
+            textEditingController: _imageEditingController,
           ),
           const SizedBox(height: 15.0),
-          TextField(
-            decoration: InputDecoration(
-              labelText: 'Descreva a legenda da postagem',
-              hintText:
-                  'Ex: Promoção de sanduíche de uma lanchonete em São Paulo',
-              prefixIcon: InkWell(
-                  onTap: () => {_descriptionEditingController.clear()},
-                  child: const Icon(Icons.close)),
-            ),
-            controller: _descriptionEditingController,
+          DefaultTextFieldWidget(
+            labelText: 'Descreva a legenda da postagem',
+            hintText:
+                'Ex: Promoção de sanduíche de uma lanchonete em São Paulo',
+            textEditingController: _descriptionEditingController,
           ),
           const SizedBox(height: 15.0),
-          TextField(
-            decoration: InputDecoration(
-              labelText: 'Hashtags para postagem',
-              hintText:
-                  'Ex: Lanchonete em São Paulo, promoção, sanduíche artesanal',
-              prefixIcon: InkWell(
-                  onTap: () => {_hashtagsEditingController.clear()},
-                  child: const Icon(Icons.close)),
-            ),
-            controller: _hashtagsEditingController,
+          DefaultTextFieldWidget(
+            labelText: 'Hashtags para postagem',
+            hintText:
+                'Ex: Lanchonete em São Paulo, promoção, sanduíche artesanal',
+            textEditingController: _hashtagsEditingController,
           ),
           const SizedBox(height: 15.0),
           Row(
@@ -114,10 +101,7 @@ class _InstagramPostPageState extends State<InstagramPostPage> {
               bloc: bloc,
               builder: (context, state) {
                 if (state is InstagramGenerationsProgressState) {
-                  return const Expanded(
-                      child: Center(
-                    child: CircularProgressIndicator(),
-                  ));
+                  return const CustomCircularProgressWidget();
                 } else if (state is InstagramGenerationsSuccessState) {
                   final instagramPostsList = state.instagramGeneration;
 

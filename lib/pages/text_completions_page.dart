@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:ai_image_generetor/functions/clipboard_function.dart';
 import 'package:ai_image_generetor/blocs/text_completions_bloc.dart';
 import 'package:ai_image_generetor/blocs/text_completions_events.dart';
 import 'package:ai_image_generetor/blocs/text_completions_state.dart';
-import 'package:ai_image_generetor/functions/clipboard_function.dart';
 import 'package:ai_image_generetor/widgets/primary_button_widget.dart';
 import 'package:ai_image_generetor/widgets/secondary_button_widget.dart';
+import 'package:ai_image_generetor/widgets/custom_circular_progress_widget.dart';
+import 'package:ai_image_generetor/widgets/default_text_field_widget.dart';
 
 class TextCompletionsPage extends StatefulWidget {
   const TextCompletionsPage({super.key});
@@ -37,15 +39,20 @@ class _TextCompletionsPageState extends State<TextCompletionsPage> {
       padding: const EdgeInsets.all(20.0),
       child: Column(
         children: [
-          TextField(
-            decoration: InputDecoration(
-              labelText: 'Descreva um texto para ser gerado ou completado',
-              hintText: 'Ex: How to make a delicious hot chocolate?',
-              prefixIcon: InkWell(
-                  onTap: () => {_textEditingController.clear()},
-                  child: const Icon(Icons.close)),
-            ),
-            controller: _textEditingController,
+          // TextField(
+          //   decoration: InputDecoration(
+          //     labelText: 'Descreva um texto para ser gerado ou completado',
+          //     hintText: 'Ex: How to make a delicious hot chocolate?',
+          //     prefixIcon: InkWell(
+          //         onTap: () => {_textEditingController.clear()},
+          //         child: const Icon(Icons.close)),
+          //   ),
+          //   controller: _textEditingController,
+          // ),
+          DefaultTextFieldWidget(
+            labelText: 'Descreva um texto para ser gerado ou completado',
+            hintText: 'Ex: How to make a delicious hot chocolate?',
+            textEditingController: _textEditingController,
           ),
           const SizedBox(height: 10.0),
           Row(
@@ -82,11 +89,7 @@ class _TextCompletionsPageState extends State<TextCompletionsPage> {
             bloc: bloc,
             builder: (context, state) {
               if (state is TextCompletionInProgressState) {
-                return const Expanded(
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                );
+                return const CustomCircularProgressWidget();
               } else if (state is TextCompletionSuccessState) {
                 final completionsTextList = state.textCompletions;
 
