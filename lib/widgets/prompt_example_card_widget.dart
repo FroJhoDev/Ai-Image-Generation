@@ -1,5 +1,5 @@
 import 'package:ai_image_generetor/constants.dart';
-import 'package:ai_image_generetor/functions/clipboard_function.dart';
+import 'package:ai_image_generetor/services/clipboard_function.dart';
 import 'package:flutter/material.dart';
 
 class PromptExapleCardWidget extends StatefulWidget {

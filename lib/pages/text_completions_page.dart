@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:ai_image_generetor/functions/clipboard_function.dart';
+import 'package:ai_image_generetor/services/clipboard_function.dart';
 import 'package:ai_image_generetor/blocs/text_completions_bloc.dart';
 import 'package:ai_image_generetor/blocs/text_completions_events.dart';
 import 'package:ai_image_generetor/blocs/text_completions_state.dart';

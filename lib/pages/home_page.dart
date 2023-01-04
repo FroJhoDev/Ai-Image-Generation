@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:ai_image_generetor/blocs/image_generations_bloc.dart';
 import 'package:ai_image_generetor/blocs/image_generations_events.dart';
@@ -10,8 +9,9 @@ import 'package:ai_image_generetor/widgets/primary_button_widget.dart';
 import 'package:ai_image_generetor/widgets/secondary_button_widget.dart';
 import 'package:ai_image_generetor/widgets/custom_circular_progress_widget.dart';
 import 'package:ai_image_generetor/widgets/default_text_field_widget.dart';
-import 'package:ai_image_generetor/functions/check_connectivity_function.dart';
-import 'package:ai_image_generetor/functions/download_image_function.dart';
+import 'package:ai_image_generetor/services/check_connectivity_function.dart';
+import 'package:ai_image_generetor/services/download_image_function.dart';
+import 'package:ai_image_generetor/services/local_storage_service.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -26,16 +26,6 @@ class _HomePageState extends State<HomePage> {
 
   String _imageSize = '512x512';
   String _imageNumber = '4';
-
-  _saveOnLocalStorage(String prompText) async {
-    final prefs = await SharedPreferences.getInstance();
-    const key = 'last_prompts';
-    List<String> mypromptsList = prefs.getStringList(key) ?? [];
-    mypromptsList.add(prompText);
-    setState(() {
-      prefs.setStringList(key, mypromptsList);
-    });
-  }
 
   @override
   void initState() {
@@ -60,16 +50,6 @@ class _HomePageState extends State<HomePage> {
             hintText: 'Ex: a white siamese cat',
             textEditingController: _textEditingController,
           ),
-          // TextField(
-          //   decoration: InputDecoration(
-          //     labelText: 'Descreva a imagem à ser gerada',
-          //     hintText: 'Ex: a white siamese cat',
-          //     prefixIcon: InkWell(
-          //         onTap: () => {_clearPrompText()},
-          //         child: const Icon(Icons.close)),
-          //   ),
-          //   controller: _textEditingController,
-          // ),
           const SizedBox(height: 10.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -114,7 +94,7 @@ class _HomePageState extends State<HomePage> {
                             imgNumber: _imageNumber,
                           ),
                         );
-                        _saveOnLocalStorage(_textEditingController.text);
+                        saveOnLocalStorage(_textEditingController.text);
                       } else {
                         showDialog(
                             context: context,
@@ -148,7 +128,7 @@ class _HomePageState extends State<HomePage> {
                                           imgNumber: _imageNumber,
                                         ),
                                       );
-                                      _saveOnLocalStorage(
+                                      saveOnLocalStorage(
                                           _textEditingController.text);
                                       Navigator.of(context).pop();
                                     },

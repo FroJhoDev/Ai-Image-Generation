@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:ai_image_generetor/constants.dart';
-import 'package:ai_image_generetor/functions/clipboard_function.dart';
+import 'package:ai_image_generetor/services/clipboard_function.dart';
+import 'package:ai_image_generetor/services/local_storage_service.dart';
 
 class HistoricPage extends StatefulWidget {
   const HistoricPage({super.key});
@@ -12,79 +12,61 @@ class HistoricPage extends StatefulWidget {
 }
 
 class _HistoricPageState extends State<HistoricPage> {
-  List<String> promptsList = [];
-
-  _readOnLocalStorage() async {
-    final prefs = await SharedPreferences.getInstance();
-    const key = 'last_prompts';
-    List<String> mypromptsList = prefs.getStringList(key) ?? [];
-    setState(() {
-      promptsList = mypromptsList;
-    });
-  }
-
-  _removeFromLocalStorage(int prompIndex) async {
-    final prefs = await SharedPreferences.getInstance();
-    const key = 'last_prompts';
-    List<String> mypromptsList = prefs.getStringList(key) ?? [];
-
-    mypromptsList.removeAt(prompIndex);
-
-    setState(() {
-      prefs.setStringList(key, mypromptsList);
-      promptsList = mypromptsList;
-    });
-  }
+  ValueNotifier<List<String>> promptsList = ValueNotifier<List<String>>([]);
 
   @override
   void initState() {
     super.initState();
-    _readOnLocalStorage();
+    readOnLocalStorage().then((list) {
+      promptsList.value = list;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    if (promptsList.isEmpty) {
-      return const Center(
-        child: Text('Nenhum Histórico'),
-      );
-    } else {
-      return ListView.separated(
-        padding: const EdgeInsets.all(10.0),
-        separatorBuilder: (BuildContext context, int index) => const Divider(),
-        itemCount: promptsList.length,
-        itemBuilder: (BuildContext context, int index) {
-          return ListTile(
-            title: Text(promptsList[index]),
-            trailing: Wrap(
-              spacing: 15.0,
-              children: [
-                InkWell(
-                  onTap: () async =>
-                      copyToClipboard(promptsList[index], context),
-                  child: const Icon(
-                    Icons.copy,
-                    color: kIconButtonColor,
-                  ),
+    return ValueListenableBuilder<List<String>>(
+      valueListenable: promptsList,
+      builder: (_, value, __) => promptsList.value.isEmpty
+          ? const Center(
+              child: Text('Nenhum Histórico'),
+            )
+          : ListView.separated(
+              padding: const EdgeInsets.all(10.0),
+              separatorBuilder: (BuildContext context, int index) =>
+                  const Divider(),
+              itemCount: promptsList.value.length,
+              itemBuilder: (_, int index) => ListTile(
+                title: Text(promptsList.value[index]),
+                trailing: Wrap(
+                  spacing: 15.0,
+                  children: [
+                    InkWell(
+                      onTap: () async =>
+                          copyToClipboard(promptsList.value[index], context),
+                      child: const Icon(
+                        Icons.copy,
+                        color: kIconButtonColor,
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        removeFromLocalStorage(index)
+                            .then((list) => promptsList.value = list);
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                          backgroundColor: Colors.redAccent,
+                          content: Text('Item Removido'),
+                        ));
+                      },
+                      child: const Icon(
+                        Icons.delete_outline,
+                        color: kSecondaryColor,
+                      ),
+                    )
+                  ],
                 ),
-                InkWell(
-                  onTap: () {
-                    _removeFromLocalStorage(index);
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      backgroundColor: Colors.redAccent,
-                      content: Text('Item Removido'),
-                    ));
-                  },
-                  child: const Icon(
-                    Icons.delete_outline,
-                    color: kSecondaryColor,
-                  ),
-                )
-              ],
+              ),
             ),
-          );
-        },
-      );
-    }
+    );
   }
 }
