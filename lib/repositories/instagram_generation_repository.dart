@@ -12,7 +12,7 @@ class InstagramRepository {
   Client client = Client();
 
   Future<List<InstagramGeneration>> generateInstagramPost(String imageText, String descriptionText, String hashtagsText) async {
-
+    
     try {
 
       late List<InstagramGeneration> instagramGenerationList = [];
@@ -29,7 +29,7 @@ class InstagramRepository {
           HttpHeaders.authorizationHeader: 'Bearer ${ApiConstants.secretKey}'
         },
         body: jsonEncode(
-          {"prompt": '$imageText sem textos', "n": 1, "size": "512x512"},
+          {"prompt": '$imageText ,sem textos', "n": 1, "size": "512x512"},
         ),
       );
 

@@ -1,3 +1,5 @@
+import 'package:ai_image_generetor/constants.dart';
+import 'package:ai_image_generetor/services/local_storage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -39,16 +41,6 @@ class _TextCompletionsPageState extends State<TextCompletionsPage> {
       padding: const EdgeInsets.all(20.0),
       child: Column(
         children: [
-          // TextField(
-          //   decoration: InputDecoration(
-          //     labelText: 'Descreva um texto para ser gerado ou completado',
-          //     hintText: 'Ex: How to make a delicious hot chocolate?',
-          //     prefixIcon: InkWell(
-          //         onTap: () => {_textEditingController.clear()},
-          //         child: const Icon(Icons.close)),
-          //   ),
-          //   controller: _textEditingController,
-          // ),
           DefaultTextFieldWidget(
             labelText: 'Descreva um texto para ser gerado ou completado',
             hintText: 'Ex: How to make a delicious hot chocolate?',
@@ -61,12 +53,13 @@ class _TextCompletionsPageState extends State<TextCompletionsPage> {
                   child: PrimaryButtonWidget(
                 buttonText: 'Gerar Textos',
                 buttonFunction: () {
-                  if (_textEditingController.value.toString().isNotEmpty) {
+                  if (_textEditingController.text.isNotEmpty) {
                     bloc.add(
                       CompletionsTextEvent(
-                        prompText: _textEditingController.value.toString(),
+                        prompText: _textEditingController.text,
                       ),
                     );
+                    saveOnLocalStorage(_textEditingController.text);
                   }
                 },
               )),
@@ -132,7 +125,8 @@ class _TextCompletionsPageState extends State<TextCompletionsPage> {
                                                       .text
                                                       .toString(),
                                                   context),
-                                          icon: const Icon(Icons.copy),
+                                          icon: const Icon(Icons.copy,
+                                              color: kIconButtonColor),
                                         ),
                                       ],
                                     ),

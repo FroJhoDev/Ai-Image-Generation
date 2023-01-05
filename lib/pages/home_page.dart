@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage> {
                   child: PrimaryButtonWidget(
                 buttonText: 'Gerar Imagens',
                 buttonFunction: () {
-                  if (_textEditingController.value.toString().isNotEmpty) {
+                  if (_textEditingController.text.isNotEmpty) {
                     checkInternetConnectivity().then((isTrue) {
                       if (isTrue) {
                         bloc.add(

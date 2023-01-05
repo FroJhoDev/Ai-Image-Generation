@@ -1,3 +1,4 @@
+import 'package:ai_image_generetor/services/clipboard_function.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -10,6 +11,8 @@ import 'package:ai_image_generetor/widgets/primary_button_widget.dart';
 import 'package:ai_image_generetor/widgets/secondary_button_widget.dart';
 import 'package:ai_image_generetor/widgets/custom_circular_progress_widget.dart';
 import 'package:ai_image_generetor/widgets/default_text_field_widget.dart';
+import 'package:ai_image_generetor/services/download_image_function.dart';
+import 'package:ai_image_generetor/constants.example.dart';
 
 class InstagramPostPage extends StatefulWidget {
   const InstagramPostPage({super.key});
@@ -69,17 +72,37 @@ class _InstagramPostPageState extends State<InstagramPostPage> {
           Row(
             children: [
               Expanded(
-                  child: PrimaryButtonWidget(
-                buttonText: 'Gerar Post',
-                buttonFunction: () {
-                  bloc.add(GenerateInstagramPost(
-                      imageText: _imageEditingController.value.toString(),
-                      descriptionText:
-                          _descriptionEditingController.value.toString(),
-                      hashtagsText:
-                          _hashtagsEditingController.value.toString()));
-                },
-              )),
+                child: PrimaryButtonWidget(
+                  buttonText: 'Gerar Post',
+                  buttonFunction: () {
+                    if (_imageEditingController.text.isNotEmpty &&
+                        _descriptionEditingController.text.isNotEmpty &&
+                        _hashtagsEditingController.text.isNotEmpty) {
+                      bloc.add(GenerateInstagramPost(
+                          imageText: _imageEditingController.text,
+                          descriptionText: _descriptionEditingController.text,
+                          hashtagsText: _hashtagsEditingController.text));
+                    } else {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: const Text("Campos em Branco"),
+                              content: const Text(
+                                  "Você deve preencher todos os campos para continuar."),
+                              actions: [
+                                PrimaryButtonWidget(
+                                  buttonText: 'Ok',
+                                  buttonFunction: () =>
+                                      Navigator.of(context).pop(),
+                                ),
+                              ],
+                            );
+                          });
+                    }
+                  },
+                ),
+              ),
               const SizedBox(
                 width: 15.0,
               ),
@@ -123,9 +146,27 @@ class _InstagramPostPageState extends State<InstagramPostPage> {
                               ],
                             ),
                           ),
-                          Image.network(
-                            instagramPostsList[index].imageUrl.toString(),
-                            fit: BoxFit.contain,
+                          Stack(
+                            children: [
+                              Image.network(
+                                instagramPostsList[index].imageUrl.toString(),
+                                fit: BoxFit.contain,
+                              ),
+                              Positioned(
+                                  top: 5,
+                                  right: 5,
+                                  child: IconButton(
+                                      onPressed: () => downloadImg(
+                                          instagramPostsList[index]
+                                              .imageUrl
+                                              .toString(),
+                                          context),
+                                      icon: const Icon(
+                                        MdiIcons.download,
+                                        color: kSecondaryColor,
+                                        size: 40,
+                                      ))),
+                            ],
                           ),
                           Padding(
                             padding: const EdgeInsets.all(10.0),
@@ -174,6 +215,19 @@ class _InstagramPostPageState extends State<InstagramPostPage> {
                                         .toString())),
                               ],
                             ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10.0),
+                            child: SecondaryButtonWidget(
+                                buttonText: 'Copiar Legenda e Hashtags',
+                                buttonFunction: () => copyToClipboard(
+                                    instagramPostsList[index]
+                                            .description
+                                            .toString() +
+                                        instagramPostsList[index]
+                                            .hashtags
+                                            .toString(),
+                                    context)),
                           ),
                         ],
                       ),
