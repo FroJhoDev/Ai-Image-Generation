@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-import 'package:ai_image_generetor/blocs/instagram_generation_bloc.dart';
-import 'package:ai_image_generetor/blocs/instagram_generation_events.dart';
-import 'package:ai_image_generetor/blocs/instagram_generation_state.dart';
+import 'package:ai_image_generetor/blocs/instagram_generation/instagram_generation_bloc.dart';
+import 'package:ai_image_generetor/blocs/instagram_generation/instagram_generation_events.dart';
+import 'package:ai_image_generetor/blocs/instagram_generation/instagram_generation_state.dart';
 
 import 'package:ai_image_generetor/widgets/primary_button_widget.dart';
 import 'package:ai_image_generetor/widgets/secondary_button_widget.dart';

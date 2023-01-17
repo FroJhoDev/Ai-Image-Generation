@@ -1,8 +1,8 @@
 import 'package:ai_image_generetor/models/instagram_generation_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:ai_image_generetor/blocs/instagram_generation_events.dart';
-import 'package:ai_image_generetor/blocs/instagram_generation_state.dart';
+import 'package:ai_image_generetor/blocs/instagram_generation/instagram_generation_events.dart';
+import 'package:ai_image_generetor/blocs/instagram_generation/instagram_generation_state.dart';
 
 import 'package:ai_image_generetor/repositories/instagram_generation_repository.dart';
 

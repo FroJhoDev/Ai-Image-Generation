@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:ai_image_generetor/blocs/image_generations_events.dart';
-import 'package:ai_image_generetor/blocs/image_generations_state.dart';
+import 'package:ai_image_generetor/blocs/image_generations/image_generations_events.dart';
+import 'package:ai_image_generetor/blocs/image_generations/image_generations_state.dart';
 import 'package:ai_image_generetor/models/image_generations_model.dart';
 import 'package:ai_image_generetor/repositories/image_generations_repository.dart';
 

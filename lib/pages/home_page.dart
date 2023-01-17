@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:ai_image_generetor/blocs/image_generations_bloc.dart';
-import 'package:ai_image_generetor/blocs/image_generations_events.dart';
-import 'package:ai_image_generetor/blocs/image_generations_state.dart';
+import 'package:ai_image_generetor/blocs/image_generations/image_generations_bloc.dart';
+import 'package:ai_image_generetor/blocs/image_generations/image_generations_events.dart';
+import 'package:ai_image_generetor/blocs/image_generations/image_generations_state.dart';
 import 'package:ai_image_generetor/widgets/image_dialog_widget.dart';
 import 'package:ai_image_generetor/widgets/primary_button_widget.dart';
 import 'package:ai_image_generetor/widgets/secondary_button_widget.dart';

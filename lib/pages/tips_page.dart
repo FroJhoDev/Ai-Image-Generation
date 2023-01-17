@@ -24,7 +24,6 @@ class _TipsPageState extends State<TipsPage> {
               'Dicas',
               style: TextStyle(
                 fontSize: 22.0,
-                color: Colors.black,
               ),
               textAlign: TextAlign.justify,
             ),
@@ -33,7 +32,6 @@ class _TipsPageState extends State<TipsPage> {
               'O campo de texto é usado para descrever a imagem, a resolução define a resolução das imagens geradas e campo numérico a quantidade de resultados. Quanto maior a resolução e a quantidade solícitas, maior vai ser o tempo de processamento e consumo de dados.',
               style: TextStyle(
                 fontSize: 14.0,
-                color: Colors.black87,
               ),
               textAlign: TextAlign.justify,
             ),
@@ -42,7 +40,6 @@ class _TipsPageState extends State<TipsPage> {
               'O campo de texto onde inserimos a descrição das imagens a serem geradas é chamado de "prompt".',
               style: TextStyle(
                 fontSize: 14.0,
-                color: Colors.black87,
               ),
               textAlign: TextAlign.justify,
             ),
@@ -51,7 +48,6 @@ class _TipsPageState extends State<TipsPage> {
               'Diferente de um site de pesquisa como o Google, o prompt não tem o objetivo de descrever uma imagem a ser buscada, e sim dá uma série de comandos específicos para fazer a IA (Inteligência artificial) compreender a imagem que deve ser gerada.',
               style: TextStyle(
                 fontSize: 14.0,
-                color: Colors.black87,
               ),
               textAlign: TextAlign.justify,
             ),
@@ -60,7 +56,6 @@ class _TipsPageState extends State<TipsPage> {
               'Para isso o texto deve ser escrito em inglês, e descrever de forma mais clara possível o resultado esperado.',
               style: TextStyle(
                 fontSize: 14.0,
-                color: Colors.black87,
               ),
               textAlign: TextAlign.justify,
             ),
@@ -69,7 +64,6 @@ class _TipsPageState extends State<TipsPage> {
               'Por exemplo, se você quer imagens de um "Panda vermelho vestido de cavaleiro medieval", deve escrever algo do tipo "A digital illustration of a red panda wearing a knight armor, with sword".',
               style: TextStyle(
                 fontSize: 14.0,
-                color: Colors.black87,
               ),
               textAlign: TextAlign.justify,
             ),
@@ -88,7 +82,6 @@ class _TipsPageState extends State<TipsPage> {
               'Além de descrever detalhes e tipo de arte, informa padrões que podem ser usados de exemplo também ajuda em melhores resultados. Por exemplo, se você quer que seu cavaleiro panda tenha o estilo dos desenhos da Pixar, pode adicionar ao final do comando o trecho "Pixar style 3D".',
               style: TextStyle(
                 fontSize: 14.0,
-                color: Colors.black87,
               ),
               textAlign: TextAlign.justify,
             ),
@@ -107,7 +100,6 @@ class _TipsPageState extends State<TipsPage> {
               'É possível solicitar artes de estilos específicos ou com traços padrões de certos artistas, como por exemplo nosso panda desenhado por Van Gogh.',
               style: TextStyle(
                 fontSize: 14.0,
-                color: Colors.black87,
               ),
               textAlign: TextAlign.justify,
             ),
@@ -126,7 +118,6 @@ class _TipsPageState extends State<TipsPage> {
               'Abaixo algumas imagens e os prompts que foram usados:',
               style: TextStyle(
                 fontSize: 14.0,
-                color: Colors.black87,
               ),
               textAlign: TextAlign.justify,
             ),

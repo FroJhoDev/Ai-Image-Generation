@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:ai_image_generetor/usecases/clipboard_function.dart';
-import 'package:ai_image_generetor/blocs/text_completions_bloc.dart';
-import 'package:ai_image_generetor/blocs/text_completions_events.dart';
-import 'package:ai_image_generetor/blocs/text_completions_state.dart';
+import 'package:ai_image_generetor/blocs/text_completions/text_completions_bloc.dart';
+import 'package:ai_image_generetor/blocs/text_completions/text_completions_events.dart';
+import 'package:ai_image_generetor/blocs/text_completions/text_completions_state.dart';
 import 'package:ai_image_generetor/widgets/primary_button_widget.dart';
 import 'package:ai_image_generetor/widgets/secondary_button_widget.dart';
 import 'package:ai_image_generetor/widgets/custom_circular_progress_widget.dart';
@@ -91,7 +91,6 @@ class _TextCompletionsPageState extends State<TextCompletionsPage> {
                       itemCount: completionsTextList.length,
                       itemBuilder: (context, index) => Card(
                             elevation: 5,
-                            color: Colors.grey[100],
                             child: Column(
                               children: [
                                 Padding(
