@@ -5,7 +5,6 @@ Future<void> copyToClipboard(String text, BuildContext context) async {
   print(text);
   await Clipboard.setData(ClipboardData(text: text));
   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-    backgroundColor: Colors.black87,
     content: Text('Copiado para Área de Transferência'),
   ));
 }
