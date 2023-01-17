@@ -9,9 +9,9 @@ import 'package:ai_image_generetor/widgets/primary_button_widget.dart';
 import 'package:ai_image_generetor/widgets/secondary_button_widget.dart';
 import 'package:ai_image_generetor/widgets/custom_circular_progress_widget.dart';
 import 'package:ai_image_generetor/widgets/default_text_field_widget.dart';
-import 'package:ai_image_generetor/services/check_connectivity_function.dart';
-import 'package:ai_image_generetor/services/download_image_function.dart';
-import 'package:ai_image_generetor/services/local_storage_service.dart';
+import 'package:ai_image_generetor/usecases/check_connectivity_function.dart';
+import 'package:ai_image_generetor/usecases/download_image_function.dart';
+import 'package:ai_image_generetor/usecases/local_storage_service.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

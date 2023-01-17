@@ -1,4 +1,4 @@
-import 'package:ai_image_generetor/services/clipboard_function.dart';
+import 'package:ai_image_generetor/usecases/clipboard_function.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -11,7 +11,7 @@ import 'package:ai_image_generetor/widgets/primary_button_widget.dart';
 import 'package:ai_image_generetor/widgets/secondary_button_widget.dart';
 import 'package:ai_image_generetor/widgets/custom_circular_progress_widget.dart';
 import 'package:ai_image_generetor/widgets/default_text_field_widget.dart';
-import 'package:ai_image_generetor/services/download_image_function.dart';
+import 'package:ai_image_generetor/usecases/download_image_function.dart';
 import 'package:ai_image_generetor/constants.example.dart';
 
 class InstagramPostPage extends StatefulWidget {
