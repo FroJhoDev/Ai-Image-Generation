@@ -21,7 +21,7 @@ class ItemChatWidget extends StatelessWidget {
       onLongPress: () async => recieved ? copyToClipboard(message, context) : {},
       child: Row(
         mainAxisAlignment:
-            recieved ? MainAxisAlignment.center : MainAxisAlignment.end,
+            recieved ? MainAxisAlignment.start : MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           recieved

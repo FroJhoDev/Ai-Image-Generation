@@ -20,9 +20,19 @@ class ChatAIBloc extends Bloc<ChatAIEvent, ChatAIState> {
     emit(state.copyWith(
         chatMessagesList: List.from(state.chatMessagesList)
           ..add(event.message)));
+    
+    emit(state.copyWith(
+        chatMessagesList: List.from(state.chatMessagesList)
+          ..add(ChatMessageModel(
+              message: 'Digitando...',
+              recieved: true,
+              time: event.message.time,
+              avatar: 'assets/images/chatgpt_logo.jpg'))));
 
     String? messageFromAI = await _textCompletionsRepo
         .responseMenssageFromAI(event.message.message);
+
+    emit(state.copyWith(chatMessagesList: state.chatMessagesList..removeLast()));
     
     var date = DateTime.now();
     var time = '${date.hour} : ${date.minute}';
