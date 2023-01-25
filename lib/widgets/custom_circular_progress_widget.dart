@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ai_image_generetor/constants.dart';
+import 'package:ai_image_generetor/core/color_schema.dart';
 
 class CustomCircularProgressWidget extends StatelessWidget {
   const CustomCircularProgressWidget({super.key});

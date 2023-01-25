@@ -1,3 +1,4 @@
+import 'package:ai_image_generetor/core/color_schema.dart';
 import 'package:ai_image_generetor/utils/config.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -8,7 +9,7 @@ import 'package:ai_image_generetor/pages/instagram_post_page.dart';
 import 'package:ai_image_generetor/pages/chat_ai_page.dart';
 import 'package:ai_image_generetor/pages/historic_page.dart';
 import 'package:ai_image_generetor/pages/tips_page.dart';
-import 'package:ai_image_generetor/constants.dart';
+import 'package:ai_image_generetor/core/api_constants.dart';
 
 class BottomNavigationBarWidget extends StatefulWidget {
   final int currentIndex;

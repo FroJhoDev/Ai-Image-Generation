@@ -1,3 +1,4 @@
+import 'package:ai_image_generetor/core/color_schema.dart';
 import 'package:ai_image_generetor/usecases/clipboard_function.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,7 +13,7 @@ import 'package:ai_image_generetor/widgets/secondary_button_widget.dart';
 import 'package:ai_image_generetor/widgets/custom_circular_progress_widget.dart';
 import 'package:ai_image_generetor/widgets/default_text_field_widget.dart';
 import 'package:ai_image_generetor/usecases/download_image_function.dart';
-import 'package:ai_image_generetor/constants.example.dart';
+import 'package:ai_image_generetor/core/api_constants.example.dart';
 
 class InstagramPostPage extends StatefulWidget {
   const InstagramPostPage({super.key});

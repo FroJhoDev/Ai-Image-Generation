@@ -1,4 +1,4 @@
-import 'package:ai_image_generetor/constants.dart';
+import 'package:ai_image_generetor/core/color_schema.dart';
 import 'package:ai_image_generetor/usecases/local_storage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

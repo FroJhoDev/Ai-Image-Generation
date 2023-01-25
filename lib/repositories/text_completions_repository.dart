@@ -2,7 +2,7 @@ import 'package:http/http.dart' show Client;
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:ai_image_generetor/constants.dart';
+import 'package:ai_image_generetor/core/api_constants.dart';
 import 'package:ai_image_generetor/models/text_completions_model.dart';
 
 class TextCompletionsRepository {
@@ -11,7 +11,7 @@ class TextCompletionsRepository {
   Future<List<Choices>> createsCompletion(String prompText) async {
     try {
       var url =
-          Uri.parse(ApiConstants.baseUrl + ApiConstants.completionsEndpoint);
+          Uri.parse(ApiConstants.baseUrl + ApiConstants.textCompletionsEndpoint);
 
       final response = await client.post(
         url,
@@ -49,7 +49,7 @@ class TextCompletionsRepository {
    Future<String?>responseMenssageFromAI(String prompText) async {
     try {
       var url =
-          Uri.parse(ApiConstants.baseUrl + ApiConstants.completionsEndpoint);
+          Uri.parse(ApiConstants.baseUrl + ApiConstants.textCompletionsEndpoint);
 
       final response = await client.post(
         url,

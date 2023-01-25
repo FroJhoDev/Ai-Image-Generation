@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' show Client;
 
-import 'package:ai_image_generetor/constants.dart';
+import 'package:ai_image_generetor/core/api_constants.dart';
 import 'package:ai_image_generetor/models/image_generations_model.dart';
 
 class ImageGenerationsRepository {
@@ -12,7 +12,7 @@ class ImageGenerationsRepository {
       String prompText, String imgSize, String imgNumber) async {
     try {
       var url =
-          Uri.parse(ApiConstants.baseUrl + ApiConstants.generationsEndpoint);
+          Uri.parse(ApiConstants.baseUrl + ApiConstants.imagesGenerationsEndpoint);
 
       final response = await client.post(
         url,

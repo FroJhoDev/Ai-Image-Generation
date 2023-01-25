@@ -1,5 +1,5 @@
-import 'package:ai_image_generetor/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:ai_image_generetor/core/color_schema.dart';
 
 class DefaultTextFieldWidget extends StatefulWidget {
   final String hintText;

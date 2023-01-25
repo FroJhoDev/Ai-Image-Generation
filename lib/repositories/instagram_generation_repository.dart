@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:ai_image_generetor/constants.dart';
+import 'package:ai_image_generetor/core/api_constants.dart';
 import 'package:ai_image_generetor/models/image_generations_model.dart';
 import 'package:ai_image_generetor/models/instagram_generation_model.dart';
 import 'package:ai_image_generetor/models/text_completions_model.dart';
@@ -23,7 +23,7 @@ class InstagramRepository {
       late List<Choices> hashtagsList;
 
       final responseImg = await client.post(
-        Uri.parse(ApiConstants.baseUrl + ApiConstants.generationsEndpoint),
+        Uri.parse(ApiConstants.baseUrl + ApiConstants.imagesGenerationsEndpoint),
         headers: {
           HttpHeaders.contentTypeHeader: 'application/json',
           HttpHeaders.authorizationHeader: 'Bearer ${ApiConstants.secretKey}'
@@ -42,7 +42,7 @@ class InstagramRepository {
       }
 
       final responseDescription = await client.post(
-        Uri.parse(ApiConstants.baseUrl + ApiConstants.completionsEndpoint),
+        Uri.parse(ApiConstants.baseUrl + ApiConstants.textCompletionsEndpoint),
         headers: {
           HttpHeaders.contentTypeHeader: 'application/json',
           HttpHeaders.authorizationHeader: 'Bearer ${ApiConstants.secretKey}'
@@ -66,7 +66,7 @@ class InstagramRepository {
       }
 
       final responseHashtags = await client.post(
-        Uri.parse(ApiConstants.baseUrl + ApiConstants.completionsEndpoint),
+        Uri.parse(ApiConstants.baseUrl + ApiConstants.textCompletionsEndpoint),
         headers: {
           HttpHeaders.contentTypeHeader: 'application/json',
           HttpHeaders.authorizationHeader: 'Bearer ${ApiConstants.secretKey}'
@@ -94,9 +94,7 @@ class InstagramRepository {
       instagramGeneration.hashtags = hashtagsList.first.text;
 
       instagramGenerationList = [instagramGeneration];
-
-      print(instagramGenerationList);
-
+      
       return instagramGenerationList;
       
     } catch (e) {

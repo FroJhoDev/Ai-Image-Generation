@@ -1,7 +1,7 @@
 import 'package:ai_image_generetor/blocs/chat_ai/chat_ai_bloc.dart';
+import 'package:ai_image_generetor/core/color_schema.dart';
 import 'package:ai_image_generetor/models/chat_message_model.dart';
 import 'package:flutter/material.dart';
-import 'package:ai_image_generetor/constants.example.dart';
 import 'package:ai_image_generetor/widgets/item_chat_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

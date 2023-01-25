@@ -1,4 +1,4 @@
-import 'package:ai_image_generetor/constants.dart';
+import 'package:ai_image_generetor/core/color_schema.dart';
 import 'package:ai_image_generetor/usecases/clipboard_function.dart';
 import 'package:flutter/material.dart';
 
