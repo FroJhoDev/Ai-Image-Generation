@@ -1,6 +1,7 @@
 part of 'generation_of_images_bloc.dart';
 
 enum GenerationOfImagesStatus {
+  initial,
   success,
   failure,
   loading,
@@ -16,10 +17,10 @@ class GenerationOfImagesState extends Equatable {
 
   const GenerationOfImagesState({
     this.promptText = '',
-    this.imageResoluion = '',
-    this.imagesAmount = '',
+    this.imageResoluion = '256x256',
+    this.imagesAmount = '4',
     this.message = '',
-    this.status = GenerationOfImagesStatus.loading,
+    this.status = GenerationOfImagesStatus.initial,
     this.listGenerationOfImagesEntity,
   });
 

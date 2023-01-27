@@ -25,6 +25,7 @@ class GenerationOfImagesBloc
     GenerationImagesButtonPressedEvent event,
     Emitter<GenerationOfImagesState> emit,
   ) async {
+    emit(state.copyWith(status: GenerationOfImagesStatus.loading));
     try {
       var listOfImages =
           await _generationOfImagesUseCase.generationImagesFromText(

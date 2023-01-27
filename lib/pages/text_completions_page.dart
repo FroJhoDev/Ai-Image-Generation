@@ -7,10 +7,10 @@ import 'package:ai_image_generetor/usecases/clipboard_function.dart';
 import 'package:ai_image_generetor/blocs/text_completions/text_completions_bloc.dart';
 import 'package:ai_image_generetor/blocs/text_completions/text_completions_events.dart';
 import 'package:ai_image_generetor/blocs/text_completions/text_completions_state.dart';
-import 'package:ai_image_generetor/widgets/primary_button_widget.dart';
-import 'package:ai_image_generetor/widgets/secondary_button_widget.dart';
-import 'package:ai_image_generetor/widgets/custom_circular_progress_widget.dart';
-import 'package:ai_image_generetor/widgets/default_text_field_widget.dart';
+import 'package:ai_image_generetor/core/widgets/primary_button_widget.dart';
+import 'package:ai_image_generetor/core/widgets/secondary_button_widget.dart';
+import 'package:ai_image_generetor/core/widgets/custom_circular_progress_widget.dart';
+import 'package:ai_image_generetor/core/widgets/default_text_field_widget.dart';
 
 class TextCompletionsPage extends StatefulWidget {
   const TextCompletionsPage({super.key});
@@ -41,11 +41,11 @@ class _TextCompletionsPageState extends State<TextCompletionsPage> {
       padding: const EdgeInsets.all(20.0),
       child: Column(
         children: [
-          DefaultTextFieldWidget(
-            labelText: 'Descreva um texto para ser gerado ou completado',
-            hintText: 'Ex: How to make a delicious hot chocolate?',
-            textEditingController: _textEditingController,
-          ),
+          // DefaultTextFieldWidget(
+          //   labelText: 'Descreva um texto para ser gerado ou completado',
+          //   hintText: 'Ex: How to make a delicious hot chocolate?',
+          //   textEditingController: _textEditingController,
+          // ),
           const SizedBox(height: 10.0),
           Row(
             children: [

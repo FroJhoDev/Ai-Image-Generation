@@ -1,4 +1,3 @@
-import 'package:ai_image_generetor/utils/config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 saveOnLocalStorage(String prompText) async {

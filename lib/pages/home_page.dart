@@ -4,13 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ai_image_generetor/blocs/image_generations/image_generations_bloc.dart';
 import 'package:ai_image_generetor/blocs/image_generations/image_generations_events.dart';
 import 'package:ai_image_generetor/blocs/image_generations/image_generations_state.dart';
-import 'package:ai_image_generetor/widgets/image_dialog_widget.dart';
-import 'package:ai_image_generetor/widgets/primary_button_widget.dart';
-import 'package:ai_image_generetor/widgets/secondary_button_widget.dart';
-import 'package:ai_image_generetor/widgets/custom_circular_progress_widget.dart';
-import 'package:ai_image_generetor/widgets/default_text_field_widget.dart';
+import 'package:ai_image_generetor/features/generation_of_images/presentation/widgets/image_dialog_widget.dart';
+import 'package:ai_image_generetor/core/widgets/primary_button_widget.dart';
+import 'package:ai_image_generetor/core/widgets/secondary_button_widget.dart';
+import 'package:ai_image_generetor/core/widgets/custom_circular_progress_widget.dart';
+import 'package:ai_image_generetor/core/widgets/default_text_field_widget.dart';
 import 'package:ai_image_generetor/usecases/check_connectivity_function.dart';
-import 'package:ai_image_generetor/usecases/download_image_function.dart';
+import 'package:ai_image_generetor/core/download_image_function.dart';
 import 'package:ai_image_generetor/usecases/local_storage_service.dart';
 
 class HomePage extends StatefulWidget {
@@ -45,11 +45,11 @@ class _HomePageState extends State<HomePage> {
       padding: const EdgeInsets.all(20.0),
       child: Column(
         children: [
-          DefaultTextFieldWidget(
-            labelText: 'Descreva a imagem à ser gerada',
-            hintText: 'Ex: a white siamese cat',
-            textEditingController: _textEditingController,
-          ),
+          // DefaultTextFieldWidget(
+          //   labelText: 'Descreva a imagem à ser gerada',
+          //   hintText: 'Ex: a white siamese cat',
+          //   textEditingController: _textEditingController,
+          // ),
           const SizedBox(height: 10.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -81,66 +81,68 @@ class _HomePageState extends State<HomePage> {
           Row(
             children: [
               Expanded(
-                  child: PrimaryButtonWidget(
-                buttonText: 'Gerar Imagens',
-                buttonFunction: () {
-                  if (_textEditingController.text.isNotEmpty) {
-                    checkInternetConnectivity().then((isTrue) {
-                      if (isTrue) {
-                        bloc.add(
-                          GenerateImagesEvent(
-                            prompText: _textEditingController.value.toString(),
-                            imgSize: _imageSize,
-                            imgNumber: _imageNumber,
-                          ),
-                        );
-                        saveOnLocalStorage(_textEditingController.text);
-                      } else {
-                        showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: const Text("Alerta de Conectividade"),
-                                content: const Text(
-                                    "Você esta utilizando os dados móveis, a geração de imagens demanda uma grande quantidade de banda. Cogite se conectar a uma rede wifi e tente novamente."),
-                                actions: [
-                                  OutlinedButton(
-                                    style: OutlinedButton.styleFrom(
-                                      foregroundColor: Colors.blueGrey,
+                child: PrimaryButtonWidget(
+                  buttonText: 'Gerar Imagens',
+                  buttonFunction: () {
+                    if (_textEditingController.text.isNotEmpty) {
+                      checkInternetConnectivity().then((isTrue) {
+                        if (isTrue) {
+                          bloc.add(
+                            GenerateImagesEvent(
+                              prompText:
+                                  _textEditingController.value.toString(),
+                              imgSize: _imageSize,
+                              imgNumber: _imageNumber,
+                            ),
+                          );
+                          saveOnLocalStorage(_textEditingController.text);
+                        } else {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: const Text("Alerta de Conectividade"),
+                                  content: const Text(
+                                      "Você esta utilizando os dados móveis, a geração de imagens demanda uma grande quantidade de banda. Cogite se conectar a uma rede wifi e tente novamente."),
+                                  actions: [
+                                    OutlinedButton(
+                                      style: OutlinedButton.styleFrom(
+                                        foregroundColor: Colors.blueGrey,
+                                      ),
+                                      child: const Text("Cancelar"),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
                                     ),
-                                    child: const Text("Cancelar"),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                  ),
-                                  OutlinedButton(
-                                    style: OutlinedButton.styleFrom(
-                                      foregroundColor: Colors.blue,
+                                    OutlinedButton(
+                                      style: OutlinedButton.styleFrom(
+                                        foregroundColor: Colors.blue,
+                                      ),
+                                      child: const Text("Continuar"),
+                                      onPressed: () {
+                                        bloc.add(
+                                          GenerateImagesEvent(
+                                            prompText: _textEditingController
+                                                .value
+                                                .toString(),
+                                            imgSize: _imageSize,
+                                            imgNumber: _imageNumber,
+                                          ),
+                                        );
+                                        saveOnLocalStorage(
+                                            _textEditingController.text);
+                                        Navigator.of(context).pop();
+                                      },
                                     ),
-                                    child: const Text("Continuar"),
-                                    onPressed: () {
-                                      bloc.add(
-                                        GenerateImagesEvent(
-                                          prompText: _textEditingController
-                                              .value
-                                              .toString(),
-                                          imgSize: _imageSize,
-                                          imgNumber: _imageNumber,
-                                        ),
-                                      );
-                                      saveOnLocalStorage(
-                                          _textEditingController.text);
-                                      Navigator.of(context).pop();
-                                    },
-                                  ),
-                                ],
-                              );
-                            });
-                      }
-                    });
-                  }
-                },
-              )),
+                                  ],
+                                );
+                              });
+                        }
+                      });
+                    }
+                  },
+                ),
+              ),
               const SizedBox(
                 width: 15.0,
               ),
@@ -179,10 +181,11 @@ class _HomePageState extends State<HomePage> {
                                 onTap: () async {
                                   await showDialog(
                                     context: context,
-                                    builder: (_) => ImageDialogWidget(
-                                      imgUrl: imgGeneratedList[index]
+                                    builder: (_) => imageDialogWidget(
+                                      imageUrl: imgGeneratedList[index]
                                           .url
                                           .toString(),
+                                      context: context,
                                     ),
                                   );
                                 },
@@ -201,7 +204,7 @@ class _HomePageState extends State<HomePage> {
                               children: <Widget>[
                                 IconButton(
                                   onPressed: () {
-                                    downloadImg(
+                                    downloadImageFunction(
                                         imgGeneratedList[index].url.toString(),
                                         context);
                                   },

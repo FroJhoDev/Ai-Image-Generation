@@ -1,4 +1,5 @@
 import 'package:ai_image_generetor/core/color_schema.dart';
+import 'package:ai_image_generetor/features/generation_of_images/presentation/pages/generation_of_images_page.dart';
 import 'package:ai_image_generetor/utils/config.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -29,13 +30,13 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
   @override
   void initState() {
     super.initState();
-    pages = const [
-      HomePage(),
-      TextCompletionsPage(),
-      InstagramPostPage(),
-      ChatAIPage(),
-      HistoricPage(),
-      TipsPage(),
+    pages = [
+      GenerationOfImagesPage(),
+      const TextCompletionsPage(),
+      const InstagramPostPage(),
+      const ChatAIPage(),
+      const HistoricPage(),
+      const TipsPage(),
     ];
 
     _bottomNavigatorBarCurrentIndex = widget.currentIndex;

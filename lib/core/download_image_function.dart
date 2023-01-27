@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_downloader/image_downloader.dart';
 
-void downloadImg(String url, BuildContext context) async {
+void downloadImageFunction(String imageUrl, BuildContext context) async {
   try {
-    var imageId = await ImageDownloader.downloadImage(url);
+    var imageId = await ImageDownloader.downloadImage(imageUrl);
     if (imageId == null) {
       return;
     } else {

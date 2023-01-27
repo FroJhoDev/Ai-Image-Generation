@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:ai_image_generetor/widgets/prompt_example_card_widget.dart';
+import 'package:ai_image_generetor/core/widgets/prompt_example_card_widget.dart';
 
 class TipsPage extends StatefulWidget {
   const TipsPage({super.key});

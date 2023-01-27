@@ -4,19 +4,22 @@ import 'package:ai_image_generetor/core/color_schema.dart';
 class DefaultTextFieldWidget extends StatefulWidget {
   final String hintText;
   final String labelText;
-  final TextEditingController textEditingController;
+  final void Function(String)? onChangedFunction;
 
-  const DefaultTextFieldWidget(
-      {super.key,
-      required this.hintText,
-      required this.labelText,
-      required this.textEditingController});
+  const DefaultTextFieldWidget({
+    super.key,
+    required this.hintText,
+    required this.labelText,
+    required this.onChangedFunction,
+  });
 
   @override
   State<DefaultTextFieldWidget> createState() => _DefaultTextFieldWidgetState();
 }
 
 class _DefaultTextFieldWidgetState extends State<DefaultTextFieldWidget> {
+  final TextEditingController _textEditingController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return TextField(
@@ -25,7 +28,7 @@ class _DefaultTextFieldWidgetState extends State<DefaultTextFieldWidget> {
         labelStyle: const TextStyle(color: kPrimaryColor),
         hintText: widget.hintText,
         prefixIcon: InkWell(
-            onTap: () => {widget.textEditingController.clear()},
+            onTap: () => {_textEditingController.clear()},
             child: const Icon(Icons.close, color: kIconButtonColor)),
         enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(color: kPrimaryColor),
@@ -34,7 +37,8 @@ class _DefaultTextFieldWidgetState extends State<DefaultTextFieldWidget> {
           borderSide: BorderSide(color: kIconButtonColor),
         ),
       ),
-      controller: widget.textEditingController,
+      controller: _textEditingController,
+      onChanged: widget.onChangedFunction,
     );
   }
 }
