@@ -1,10 +1,4 @@
-# AI Generetor
-
-![GitHub repo size](https://img.shields.io/github/repo-size/iuricode/README-template?style=for-the-badge)
-![GitHub language count](https://img.shields.io/github/languages/count/iuricode/README-template?style=for-the-badge)
-![GitHub forks](https://img.shields.io/github/forks/iuricode/README-template?style=for-the-badge)
-![Bitbucket open issues](https://img.shields.io/bitbucket/issues/iuricode/README-template?style=for-the-badge)
-![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/iuricode/README-template?style=for-the-badge)
+# 🤖 AI Generetor
 
 Um projeto de App para testar as possibilidades utilizando a API da [OpenAI](https://openai.com/), para gerar diversos tipos de conteúdo com inteligência artificial. O projeto foi desenvolvido em Flutter com BloC e seguindo os padrões propostos pela  Clean Architecture.
 
@@ -58,4 +52,4 @@ Após isso salve o arquivo, e renomeie-o, removendo o ‘.example’ devendo fic
 
 Com isso já é possível executar o App utilizando o comando ```flutter run``` ou usando o comando próprio de sua IDE.
 
-[⬆ Voltar ao topo](#Ai-Image-Generation)<br>
+[⬆ Voltar ao topo](https://github.com/jonathan1313/Ai-Image-Generation)<br>
