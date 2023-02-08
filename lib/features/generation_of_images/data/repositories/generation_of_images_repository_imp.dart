@@ -1,10 +1,10 @@
 import 'dart:convert';
-import 'package:ai_image_generetor/core/service/dio_service.dart';
 
-import 'package:ai_image_generetor/core/api_constants.dart';
-import 'package:ai_image_generetor/features/generation_of_images/domain/entities/generation_of_images_entity.dart';
-import 'package:ai_image_generetor/features/generation_of_images/domain/repositories/generation_of_images_repository.dart';
-import 'package:ai_image_generetor/features/generation_of_images/data/models/generation_of_images_model.dart';
+import '../models/generation_of_images_model.dart';
+import '../../domain/entities/generation_of_images_entity.dart';
+import '../../domain/repositories/generation_of_images_repository.dart';
+import '../../../../core/api_constants.dart';
+import '../../../../core/service/dio_service.dart';
 
 class GenerationOfImagesRepositoryImp implements GenerationOfImagesRepository {
   final DioService _dioService;

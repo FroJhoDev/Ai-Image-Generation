@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:ai_image_generetor/core/service/dio_service.dart';
 
 import 'package:ai_image_generetor/features/generation_instagram_post/domain/entities/generation_instagram_post_entity.dart';
@@ -22,47 +24,52 @@ class GenerationInstagramPostRepositoryImp
     String descriptionText,
     String hashtagsText,
   ) async {
-    final GenerationOfImagesUseCase generationOfImagesUseCase =
-        GenerationOfImagesUseCaseImp(
-            GenerationOfImagesRepositoryImp(_dioService));
-    final GenerationTextCompletionsUseCase generationTextCompletionsUseCase =
-        GenerationTextCompletionsUseCaseImp(
-            GenerationTextCompletionsRepositoryImp(_dioService));
+    try {
+      final GenerationOfImagesUseCase generationOfImagesUseCase =
+          GenerationOfImagesUseCaseImp(
+              GenerationOfImagesRepositoryImp(_dioService));
+      final GenerationTextCompletionsUseCase generationTextCompletionsUseCase =
+          GenerationTextCompletionsUseCaseImp(
+              GenerationTextCompletionsRepositoryImp(_dioService));
 
-    final GenerationInstagramPostEntity instagramPost =
-        GenerationInstagramPostEntity();
+      final GenerationInstagramPostEntity instagramPost =
+          GenerationInstagramPostEntity();
 
-    late String postImage;
-    late String postDescriptionText;
-    late String postHashtags;
+      late String postImage;
+      late String postDescriptionText;
+      late String postHashtags;
 
-    await generationOfImagesUseCase
-        .generationImagesFromText(
-            prompText: '$imageDescriptionText, sem textos',
-            imageResoluion: '512x512',
-            imagesAmount: '1')
-        .then((listOfImages) {
-      postImage = listOfImages.first.imageUrl;
-    });
+      await generationOfImagesUseCase
+          .generationImagesFromText(
+              prompText: '$imageDescriptionText, sem textos',
+              imageResoluion: '512x512',
+              imagesAmount: '1')
+          .then((listOfImages) {
+        postImage = listOfImages.first.imageUrl;
+      });
 
-    await generationTextCompletionsUseCase
-        .generationTextCompletion(
-            prompText: 'texto chamativo sobre $descriptionText')
-        .then((generationTextForDescription) {
-      postDescriptionText = generationTextForDescription.toString();
-    });
+      await generationTextCompletionsUseCase
+          .generationTextCompletion(
+              prompText: 'texto chamativo sobre $descriptionText')
+          .then((generationTextForDescription) {
+        postDescriptionText = generationTextForDescription.toString();
+      });
 
-    await generationTextCompletionsUseCase
-        .generationTextCompletion(
-            prompText: 'hashtags para postagem sobre $hashtagsText')
-        .then((generationTextForDescription) {
-      postHashtags = generationTextForDescription.toString();
-    });
+      await generationTextCompletionsUseCase
+          .generationTextCompletion(
+              prompText: 'hashtags para postagem sobre $hashtagsText')
+          .then((generationTextForDescription) {
+        postHashtags = generationTextForDescription.toString();
+      });
 
-    instagramPost.postImage = postImage;
-    instagramPost.postDescription = postDescriptionText;
-    instagramPost.postHashtags = postHashtags;
+      instagramPost.postImage = postImage;
+      instagramPost.postDescription = postDescriptionText;
+      instagramPost.postHashtags = postHashtags;
 
-    return instagramPost;
+      return instagramPost;
+    } on Exception catch (error, stack) {
+      log('Erro ao gerar postagem', error: error, stackTrace: stack);
+      throw ('Erro ao gerar postagem');
+    }
   }
 }

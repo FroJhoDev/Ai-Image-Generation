@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:ai_image_generetor/core/widgets/secondary_button_widget.dart';
+import '../../../../core/widgets/secondary_button_widget.dart';
+import '../bloc/generation_of_images_bloc.dart';
 
 class GenerationOfImagesClearButtonComponent extends StatelessWidget {
   const GenerationOfImagesClearButtonComponent({super.key});
@@ -9,7 +11,11 @@ class GenerationOfImagesClearButtonComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return SecondaryButtonWidget(
       buttonText: 'Limpar',
-      buttonFunction: () {},
+      buttonFunction: () {
+        context
+            .read<GenerationOfImagesBloc>()
+            .add(const GenerationImagesClearStateButtonPressedEvent());
+      },
     );
   }
 }

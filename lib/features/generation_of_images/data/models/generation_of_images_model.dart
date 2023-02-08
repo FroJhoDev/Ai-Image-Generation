@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:ai_image_generetor/features/generation_of_images/domain/entities/generation_of_images_entity.dart';
+import '../../domain/entities/generation_of_images_entity.dart';
 
 class GenerationOfImagesModel extends GenerationOfImagesEntity {
   String url;
@@ -21,5 +21,7 @@ class GenerationOfImagesModel extends GenerationOfImagesEntity {
 
   String toJson() => json.encode(toMap());
 
-  factory GenerationOfImagesModel.fromJson(String source) => GenerationOfImagesModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory GenerationOfImagesModel.fromJson(String source) =>
+      GenerationOfImagesModel.fromMap(
+          json.decode(source) as Map<String, dynamic>);
 }

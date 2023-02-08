@@ -7,8 +7,12 @@ abstract class GenerationOfImagesEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GenerationImagesButtonPressedEvent extends GenerationOfImagesEvent {
-  const GenerationImagesButtonPressedEvent();
+class GenerationImagesSubmitButtonPressedEvent extends GenerationOfImagesEvent {
+  const GenerationImagesSubmitButtonPressedEvent();
+}
+
+class GenerationImagesClearStateButtonPressedEvent extends GenerationOfImagesEvent {
+  const GenerationImagesClearStateButtonPressedEvent();
 }
 
 class TextPromptChangedEvent extends GenerationOfImagesEvent {

@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:ai_image_generetor/core/color_schema.dart';
+
+import '../color_schema.dart';
 
 class DefaultTextFieldWidget extends StatefulWidget {
   final String hintText;
   final String labelText;
   final void Function(String)? onChangedFunction;
+  final TextEditingController? textEditingController;
 
   const DefaultTextFieldWidget({
     super.key,
     required this.hintText,
     required this.labelText,
     required this.onChangedFunction,
+    this.textEditingController,
   });
 
   @override
@@ -37,7 +40,7 @@ class _DefaultTextFieldWidgetState extends State<DefaultTextFieldWidget> {
           borderSide: BorderSide(color: kIconButtonColor),
         ),
       ),
-      controller: _textEditingController,
+      controller: widget.textEditingController ?? _textEditingController,
       onChanged: widget.onChangedFunction,
     );
   }

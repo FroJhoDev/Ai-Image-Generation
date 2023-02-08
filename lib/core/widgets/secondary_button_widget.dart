@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ai_image_generetor/core/color_schema.dart';
+
+import '../color_schema.dart';
 
 class SecondaryButtonWidget extends StatelessWidget {
   final String buttonText;

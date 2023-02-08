@@ -2,13 +2,13 @@ import 'package:ai_image_generetor/core/color_schema.dart';
 import 'package:ai_image_generetor/usecases/clipboard_function.dart';
 import 'package:flutter/material.dart';
 
-class ItemChatWidget extends StatelessWidget {
+class ChatAiItemMessageWidget extends StatelessWidget {
   final String avatar;
   final bool recieved;
   final String message;
   final String time;
 
-  const ItemChatWidget(
+  const ChatAiItemMessageWidget(
       {super.key,
       this.avatar = '',
       required this.recieved,
@@ -18,7 +18,7 @@ class ItemChatWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onLongPress: () async => recieved ? copyToClipboard(message, context) : {},
+      onLongPress: () async => copyToClipboard(message, context),
       child: Row(
         mainAxisAlignment:
             recieved ? MainAxisAlignment.start : MainAxisAlignment.end,

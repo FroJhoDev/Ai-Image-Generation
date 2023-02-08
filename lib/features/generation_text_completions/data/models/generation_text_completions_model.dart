@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:ai_image_generetor/features/generation_text_completions/domain/entities/generation_text_completions_entity.dart';
+import '../../../../core/entities/generation_text_completions_entity.dart';
 
 class GenerationTextCompletionsModel extends GenerationTextCompletionsEntity {
   String text;

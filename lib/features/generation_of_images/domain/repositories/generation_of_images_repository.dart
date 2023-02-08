@@ -1,4 +1,4 @@
-import 'package:ai_image_generetor/features/generation_of_images/domain/entities/generation_of_images_entity.dart';
+import '../entities/generation_of_images_entity.dart';
 
 abstract class GenerationOfImagesRepository {
   Future<List<GenerationOfImagesEntity>> generationImagesFromText({

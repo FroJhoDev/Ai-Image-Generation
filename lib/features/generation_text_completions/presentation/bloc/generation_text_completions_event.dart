@@ -6,3 +6,22 @@ abstract class GenerationTextCompletionsEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class GenerationTextSubmitButtonPressedEvent
+    extends GenerationTextCompletionsEvent {
+  const GenerationTextSubmitButtonPressedEvent();
+}
+
+class GenerationTextFieldChangedEvent extends GenerationTextCompletionsEvent {
+  final String promptText;
+
+  const GenerationTextFieldChangedEvent({required this.promptText});
+
+  @override
+  List<Object> get props => [promptText];
+}
+
+class GenerationTextClearButtonPressedEvent
+    extends GenerationTextCompletionsEvent {
+  const GenerationTextClearButtonPressedEvent();
+}

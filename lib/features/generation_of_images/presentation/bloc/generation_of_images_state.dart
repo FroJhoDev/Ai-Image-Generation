@@ -2,9 +2,9 @@ part of 'generation_of_images_bloc.dart';
 
 enum GenerationOfImagesStatus {
   initial,
+  loading,
   success,
   failure,
-  loading,
 }
 
 class GenerationOfImagesState extends Equatable {

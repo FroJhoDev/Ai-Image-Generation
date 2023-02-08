@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:ai_image_generetor/features/generation_of_images/presentation/components/generation_of_images_image_resolution_select_drop_down_component.dart';
-import 'package:ai_image_generetor/features/generation_of_images/presentation/components/generation_of_images_images_amount_select_drop_down_component.dart';
-import 'package:ai_image_generetor/features/generation_of_images/presentation/components/generation_of_images_submit_button_component.dart';
-import 'package:ai_image_generetor/features/generation_of_images/presentation/components/generation_of_images_prompt_text_field_component.dart';
-import 'package:ai_image_generetor/features/generation_of_images/presentation/components/generation_of_images_clear_button_component.dart';
-
+import 'generation_of_images_clear_button_component.dart';
+import 'generation_of_images_image_resolution_select_drop_down_component.dart';
+import 'generation_of_images_images_amount_select_drop_down_component.dart';
+import 'generation_of_images_prompt_text_field_component.dart';
+import 'generation_of_images_submit_button_component.dart';
 class GenerationOfImagesFormComponent extends StatelessWidget {
   const GenerationOfImagesFormComponent({super.key});
 

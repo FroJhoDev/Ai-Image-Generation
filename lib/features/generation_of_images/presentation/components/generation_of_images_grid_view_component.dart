@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:ai_image_generetor/core/widgets/custom_circular_progress_widget.dart';
-import 'package:ai_image_generetor/features/generation_of_images/presentation/bloc/generation_of_images_bloc.dart';
-import 'package:ai_image_generetor/features/generation_of_images/presentation/components/generation_of_images_card_image_component.dart';
-
+import 'generation_of_images_card_image_component.dart';
+import '../bloc/generation_of_images_bloc.dart';
+import '../../../../core/widgets/custom_circular_progress_widget.dart';
 class GenerationOfImagesGridViewComponent extends StatelessWidget {
   const GenerationOfImagesGridViewComponent({Key? key}) : super(key: key);
 

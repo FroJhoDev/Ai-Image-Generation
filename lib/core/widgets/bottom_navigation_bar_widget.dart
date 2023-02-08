@@ -1,16 +1,16 @@
-import 'package:ai_image_generetor/core/color_schema.dart';
-import 'package:ai_image_generetor/features/generation_of_images/presentation/pages/generation_of_images_page.dart';
-import 'package:ai_image_generetor/utils/config.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-import 'package:ai_image_generetor/pages/home_page.dart';
-import 'package:ai_image_generetor/pages/text_completions_page.dart';
-import 'package:ai_image_generetor/pages/instagram_post_page.dart';
-import 'package:ai_image_generetor/pages/chat_ai_page.dart';
-import 'package:ai_image_generetor/pages/historic_page.dart';
-import 'package:ai_image_generetor/pages/tips_page.dart';
-import 'package:ai_image_generetor/core/api_constants.dart';
+import '../color_schema.dart';
+
+import '../../pages/historic_page.dart';
+import '../../pages/instagram_post_page.dart';
+import '../../pages/tips_page.dart';
+import '../../utils/config.dart';
+
+import '../../features/generation_of_images/presentation/pages/generation_of_images_page.dart';
+import '../../features/generation_text_completions/presentation/pages/generation_text_completions_page.dart';
+import '../../features/chat_ai/presentation/pages/chat_ai_page.dart';
 
 class BottomNavigationBarWidget extends StatefulWidget {
   final int currentIndex;
@@ -32,9 +32,9 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
     super.initState();
     pages = [
       GenerationOfImagesPage(),
-      const TextCompletionsPage(),
+      GenerationTextCompletionsPage(),
       const InstagramPostPage(),
-      const ChatAIPage(),
+      ChatAiPage(),
       const HistoricPage(),
       const TipsPage(),
     ];
@@ -120,10 +120,6 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
                 label: 'Instagram', icon: Icon(MdiIcons.instagram)),
             BottomNavigationBarItem(
                 label: 'Chat IA', icon: Icon(MdiIcons.commentOutline)),
-            // BottomNavigationBarItem(
-            //     label: 'Histórico', icon: Icon(Icons.history)),
-            // BottomNavigationBarItem(
-            //     label: 'Dicas', icon: Icon(Icons.lightbulb_outline)),
           ],
           type: BottomNavigationBarType.fixed,
           selectedItemColor: kSecondaryColor,

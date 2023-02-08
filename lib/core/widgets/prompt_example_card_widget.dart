@@ -1,6 +1,7 @@
-import 'package:ai_image_generetor/core/color_schema.dart';
-import 'package:ai_image_generetor/usecases/clipboard_function.dart';
 import 'package:flutter/material.dart';
+
+import '../../usecases/clipboard_function.dart';
+import '../color_schema.dart';
 
 class PromptExapleCardWidget extends StatefulWidget {
   final String imageUrl;

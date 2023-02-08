@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:ai_image_generetor/core/widgets/default_text_field_widget.dart';
-import 'package:ai_image_generetor/features/generation_of_images/presentation/bloc/generation_of_images_bloc.dart';
+import '../../../../core/widgets/default_text_field_widget.dart';
+import '../bloc/generation_of_images_bloc.dart';
 
 class GenerationOfImagesPromptTextFieldComponent extends StatelessWidget {
   const GenerationOfImagesPromptTextFieldComponent({super.key});

@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:ai_image_generetor/core/api_constants.dart';
 import 'package:ai_image_generetor/core/service/dio_service.dart';
 import 'package:ai_image_generetor/features/generation_text_completions/data/models/generation_text_completions_model.dart';
-import 'package:ai_image_generetor/features/generation_text_completions/domain/entities/generation_text_completions_entity.dart';
+import 'package:ai_image_generetor/core/entities/generation_text_completions_entity.dart';
 import 'package:ai_image_generetor/features/generation_text_completions/domain/repositories/generation_text_completions_repository.dart';
 
 class GenerationTextCompletionsRepositoryImp
@@ -29,6 +29,6 @@ class GenerationTextCompletionsRepositoryImp
             .map((item) => GenerationTextCompletionsModel.fromJson(json.encode(item)))
             .toList();
 
-    return generationTextsList.first.responseText;
+    return generationTextsList.first.responseText.trim();
   }
 }
