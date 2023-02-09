@@ -2,9 +2,11 @@
 
 Um projeto de App para testar as possibilidades utilizando a API da [OpenAI](https://openai.com/), para gerar diversos tipos de conteúdo com inteligência artificial. O projeto foi desenvolvido em Flutter com BloC e seguindo os padrões propostos pela  Clean Architecture.
 
-<img src="https://github.com/jonathan1313/Ai-Image-Generation/blob/clean-arch/images-examples/image-generation-example.gif" width="250">
-<img src="https://github.com/jonathan1313/Ai-Image-Generation/blob/clean-arch/images-examples/text-generation-example.gif" width="250">
-<img src="https://github.com/jonathan1313/Ai-Image-Generation/blob/clean-arch/images-examples/chat-ai-example.gif" width="250">
+<p align="middle">
+<img src="https://github.com/jonathan1313/Ai-Image-Generation/blob/clean-arch/images-examples/image-generation-example.gif" width="30%">
+<img src="https://github.com/jonathan1313/Ai-Image-Generation/blob/clean-arch/images-examples/text-generation-example.gif" width="30%">
+<img src="https://github.com/jonathan1313/Ai-Image-Generation/blob/clean-arch/images-examples/chat-ai-example.gif" width="30%">
+</p>
 
 ## 🚀 Configurando para Utilizar
 
