@@ -1,12 +1,11 @@
 class GenerationInstagramPostEntity {
-  String? postImage;
-  String? postDescription;
-  String? postHashtags;
-
+  String postImage;
+  String postDescription;
+  String postHashtags;
   GenerationInstagramPostEntity({
-    this.postImage,
-    this.postDescription,
-    this.postHashtags,
+    required this.postImage,
+    required this.postDescription,
+    required this.postHashtags,
   });
 
 }

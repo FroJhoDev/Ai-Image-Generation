@@ -1,9 +1,10 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import '../models/generation_of_images_model.dart';
 import '../../domain/entities/generation_of_images_entity.dart';
 import '../../domain/repositories/generation_of_images_repository.dart';
-import '../../../../core/api_constants.dart';
+import '../../../../core/config/api_constants.dart';
 import '../../../../core/service/dio_service.dart';
 
 class GenerationOfImagesRepositoryImp implements GenerationOfImagesRepository {
@@ -16,19 +17,24 @@ class GenerationOfImagesRepositoryImp implements GenerationOfImagesRepository {
     required String imageResoluion,
     required String imagesAmount,
   }) async {
-    var result = await _dioService
-        .getDio()
-        .post(ApiConstants.imagesGenerationsEndpoint, data: {
-      'prompt': prompText,
-      'n': int.parse(imagesAmount),
-      'size': imageResoluion,
-    });
+    try {
+      var responseFromApi = await _dioService
+          .getDio()
+          .post(ApiConstants.imagesGenerationsEndpoint, data: {
+        'prompt': prompText,
+        'n': int.parse(imagesAmount),
+        'size': imageResoluion,
+      });
 
-    List<GenerationOfImagesEntity> listGeneratedImages =
-        (result.data['data'] as List)
-            .map((item) => GenerationOfImagesModel.fromJson(json.encode(item)))
-            .toList();
+      List<GenerationOfImagesEntity> listGeneratedImages = (responseFromApi
+              .data['data'] as List)
+          .map((item) => GenerationOfImagesModel.fromJson(json.encode(item)))
+          .toList();
 
-    return listGeneratedImages;
+      return listGeneratedImages;
+    } on Exception catch (error, stack) {
+      log('Erro ao recuperar imagens na API', error: error, stackTrace: stack);
+      throw ('Erro ao recuperar imagens na API');
+    }
   }
 }

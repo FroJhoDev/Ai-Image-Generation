@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-import '../color_schema.dart';
-
-import '../../pages/historic_page.dart';
-import '../../pages/instagram_post_page.dart';
-import '../../pages/tips_page.dart';
-import '../../utils/config.dart';
+import '../styles/color_schema.dart';
+import '../utils/config.dart';
 
 import '../../features/generation_of_images/presentation/pages/generation_of_images_page.dart';
 import '../../features/generation_text_completions/presentation/pages/generation_text_completions_page.dart';
+import '../../features/generation_instagram_post/presentation/pages/generation_instagram_post_page.dart';
 import '../../features/chat_ai/presentation/pages/chat_ai_page.dart';
+import '../../features/app_tips/presentation/pages/app_tips_page.dart';
+import '../../features/prompts_historic/presentation/pages/prompts_historic_page.dart';
 
 class BottomNavigationBarWidget extends StatefulWidget {
   final int currentIndex;
@@ -33,10 +32,10 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
     pages = [
       GenerationOfImagesPage(),
       GenerationTextCompletionsPage(),
-      const InstagramPostPage(),
+      GenerationInstagramPostPage(),
       ChatAiPage(),
-      const HistoricPage(),
-      const TipsPage(),
+      const PromptsHistoricPage(),
+      const AppTipsPage(),
     ];
 
     _bottomNavigatorBarCurrentIndex = widget.currentIndex;

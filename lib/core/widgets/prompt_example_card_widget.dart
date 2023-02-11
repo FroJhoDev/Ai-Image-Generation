@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../usecases/clipboard_function.dart';
-import '../color_schema.dart';
+import '../helpers/copy_to_clipboard_helper.dart';
+import '../styles/color_schema.dart';
 
 class PromptExapleCardWidget extends StatefulWidget {
   final String imageUrl;
@@ -38,7 +38,7 @@ class _PromptExapleCardWidgetState extends State<PromptExapleCardWidget> {
                       children: <Widget>[
                         IconButton(
                           onPressed: () async =>
-                              copyToClipboard(widget.promptText, context),
+                              copyToClipboardHelper(widget.promptText, context),
                           icon: const Icon(
                             Icons.copy,
                             color: kIconButtonColor,

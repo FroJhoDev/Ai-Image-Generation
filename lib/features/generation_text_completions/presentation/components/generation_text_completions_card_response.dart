@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/generation_text_completions_bloc.dart';
-import '../../../../core/color_schema.dart';
-import '../../../../usecases/clipboard_function.dart';
+import '../../../../core/styles/color_schema.dart';
+import '../../../../core/helpers/copy_to_clipboard_helper.dart';
 import '../../../../core/widgets/custom_circular_progress_widget.dart';
 
 class GenerationTextCompletionsCardResponse extends StatelessWidget {
@@ -46,7 +46,7 @@ class GenerationTextCompletionsCardResponse extends StatelessWidget {
                           children: <Widget>[
                             IconButton(
                               onPressed: () async =>
-                                  copyToClipboard(state.textResponse, context),
+                                  copyToClipboardHelper(state.textResponse, context),
                               icon: const Icon(Icons.copy, color: kIconButtonColor),
                             ),
                           ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:ai_image_generetor/utils/config.dart';
+import 'package:ai_image_generetor/core/utils/config.dart';
 import 'package:ai_image_generetor/core/widgets/bottom_navigation_bar_widget.dart';
 
 void main() {

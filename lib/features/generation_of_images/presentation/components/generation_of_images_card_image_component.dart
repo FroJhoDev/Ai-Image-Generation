@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../widgets/image_dialog_widget.dart';
-import '../../../../core/download_image_function.dart';
+import '../../../../core/helpers/download_image_helper.dart';
 class GenerationOfImagesCardImageComponent extends StatelessWidget {
   final String imageUrl;
   const GenerationOfImagesCardImageComponent({

@@ -1,12 +1,14 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import '../../../../core/service/dio_service.dart';
+import '../../../../core/config/api_constants.dart';
+
+import '../../../../core/entities/generation_text_completions_entity.dart';
+
 import '../models/text_received_from_ai_model.dart';
 import '../../domain/entities/chat_ai_message_entity.dart';
 import '../../domain/repositories/chat_ai_repository.dart';
-import '../../../../core/service/dio_service.dart';
-import '../../../../core/api_constants.dart';
-import '../../../../core/entities/generation_text_completions_entity.dart';
 
 class ChatAiRepositoryImp extends ChatAiRepository {
   final DioService _dioService;

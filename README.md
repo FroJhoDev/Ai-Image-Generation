@@ -52,7 +52,7 @@ Abra o projeto em sua IDE:
 cd .
 ```
 
-Acesse a pasta lib -> core e no arquivo ‘api_constants.example.dart’, no parâmetro ‘secretKey’ substitua o valor ‘YOUR_OPENAI_API_KEY_HERE’ por sua chave gerada no site da OpenAI.
+Acesse a pasta ```lib -> core -> config``` e no arquivo ‘api_constants.example.dart’, no parâmetro ‘secretKey’ substitua o valor ‘YOUR_OPENAI_API_KEY_HERE’ por sua chave gerada no site da OpenAI.
 
 Após isso salve o arquivo, e renomeie-o, removendo o ‘.example’ devendo ficar com nome ‘api_constants.dart’.
 

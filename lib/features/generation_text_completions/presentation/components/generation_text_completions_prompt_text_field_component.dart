@@ -11,8 +11,8 @@ class GenerationTextCompletionsPromptTextFieldComponent
   @override
   Widget build(BuildContext context) {
     return DefaultTextFieldWidget(
-      hintText: 'Descreva um texto para ser gerado ou completado',
-      labelText: 'Ex: How to make a delicious hot chocolate?',
+      labelText: 'Descreva um texto para ser gerado ou completado',
+      hintText: 'Ex: How to make a delicious hot chocolate?',
       onChangedFunction: ((value) {
         context
             .read<GenerationTextCompletionsBloc>()

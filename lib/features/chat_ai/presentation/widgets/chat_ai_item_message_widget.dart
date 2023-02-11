@@ -1,5 +1,5 @@
-import 'package:ai_image_generetor/core/color_schema.dart';
-import 'package:ai_image_generetor/usecases/clipboard_function.dart';
+import 'package:ai_image_generetor/core/styles/color_schema.dart';
+import 'package:ai_image_generetor/core/helpers/copy_to_clipboard_helper.dart';
 import 'package:flutter/material.dart';
 
 class ChatAiItemMessageWidget extends StatelessWidget {
@@ -18,7 +18,7 @@ class ChatAiItemMessageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onLongPress: () async => copyToClipboard(message, context),
+      onLongPress: () async => copyToClipboardHelper(message, context),
       child: Row(
         mainAxisAlignment:
             recieved ? MainAxisAlignment.start : MainAxisAlignment.end,

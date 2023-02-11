@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../color_schema.dart';
+import '../styles/color_schema.dart';
 
 class DefaultTextFieldWidget extends StatefulWidget {
   final String hintText;

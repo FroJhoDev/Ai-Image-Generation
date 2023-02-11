@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/chat_ai_bloc.dart';
-import '../../../../core/color_schema.dart';
+import '../../../../core/styles/color_schema.dart';
 
 class ChatAiTextFieldComponent extends StatelessWidget {
   ChatAiTextFieldComponent({super.key});
