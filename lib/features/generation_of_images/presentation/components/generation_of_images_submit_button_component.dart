@@ -9,14 +9,35 @@ class GenerationOfImagesSubmitButtonComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PrimaryButtonWidget(
-      buttonText: 'Gerar Imagens',
-      buttonFunction: () {
-        context
-            .read<GenerationOfImagesBloc>()
-            .add(const GenerationImagesSubmitButtonPressedEvent());
-        FocusManager.instance.primaryFocus?.unfocus();
+    bool isFormValid = false;
+
+    return BlocListener<GenerationOfImagesBloc, GenerationOfImagesState>(
+      listener: (context, state) {
+        if (state.promptText.isNotEmpty &&
+            state.imageResoluion.isNotEmpty &&
+            state.imagesAmount.isNotEmpty) {
+          isFormValid = true;
+        } else {
+          isFormValid = false;
+        }
       },
+      child: PrimaryButtonWidget(
+        buttonText: 'Gerar Imagens',
+        buttonFunction: () {
+          if (isFormValid) {
+            context
+                .read<GenerationOfImagesBloc>()
+                .add(const GenerationImagesSubmitButtonPressedEvent());
+            FocusManager.instance.primaryFocus?.unfocus();
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Você deve preencher todos os campos'),
+              ),
+            );
+          }
+        },
+      ),
     );
   }
 }

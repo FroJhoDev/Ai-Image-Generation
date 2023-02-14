@@ -6,7 +6,7 @@ import '../bloc/chat_ai_bloc.dart';
 import '../../domain/usecases/chat_ai_usecase.dart';
 import '../../domain/usecases/chat_ai_usecase_imp.dart';
 import '../../data/repositories/chat_ai_repository_imp.dart';
-import '../../../../core/service/dio_service_imp.dart';
+import '../../../../core/services/dio_service_imp.dart';
 
 class ChatAiPage extends StatelessWidget {
   ChatAiPage({super.key});

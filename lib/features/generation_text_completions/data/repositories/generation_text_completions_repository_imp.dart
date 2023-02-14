@@ -6,7 +6,7 @@ import '../../../../core/entities/generation_text_completions_entity.dart';
 
 import '../models/generation_text_completions_model.dart';
 import '../../domain/repositories/generation_text_completions_repository.dart';
-import '../../../../core/service/dio_service.dart';
+import '../../../../core/services/dio_service.dart';
 
 class GenerationTextCompletionsRepositoryImp
     implements GenerationTextCompletionsRepository {

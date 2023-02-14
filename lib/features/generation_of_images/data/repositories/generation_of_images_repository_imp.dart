@@ -5,7 +5,7 @@ import '../models/generation_of_images_model.dart';
 import '../../domain/entities/generation_of_images_entity.dart';
 import '../../domain/repositories/generation_of_images_repository.dart';
 import '../../../../core/config/api_constants.dart';
-import '../../../../core/service/dio_service.dart';
+import '../../../../core/services/dio_service.dart';
 
 class GenerationOfImagesRepositoryImp implements GenerationOfImagesRepository {
   final DioService _dioService;

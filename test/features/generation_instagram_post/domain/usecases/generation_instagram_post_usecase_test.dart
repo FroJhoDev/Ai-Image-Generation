@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:ai_image_generetor/core/service/dio_service_imp.dart';
+import 'package:ai_image_generetor/core/services/dio_service_imp.dart';
 import 'package:ai_image_generetor/features/generation_instagram_post/data/models/generation_instagram_post_model.dart';
 import 'package:ai_image_generetor/features/generation_instagram_post/data/repositories/generation_instagram_post.repository_imp.dart';
 import 'package:ai_image_generetor/features/generation_instagram_post/domain/entities/generation_instagram_post_entity.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ai_image_generetor/core/service/dio_service_imp.dart';
+import 'package:ai_image_generetor/core/services/dio_service_imp.dart';
 import 'package:ai_image_generetor/features/generation_of_images/data/repositories/generation_of_images_repository_imp.dart';
 import 'package:ai_image_generetor/features/generation_of_images/domain/usecases/generation_of_images_usecase_imp.dart';
 import 'package:ai_image_generetor/features/generation_of_images/domain/repositories/generation_of_images_repository.dart';

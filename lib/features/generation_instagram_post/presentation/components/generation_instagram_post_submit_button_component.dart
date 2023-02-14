@@ -9,14 +9,36 @@ class GenerationInstagramPostSubmitButtonComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PrimaryButtonWidget(
-      buttonText: 'Gerar Postagem',
-      buttonFunction: () {
-        context
-            .read<GenerationInstagramPostBloc>()
-            .add(const GenerationInstagramSubmitButtonPressedEvent());
-        FocusManager.instance.primaryFocus?.unfocus();
+    bool isFormValid = false;
+
+    return BlocListener<GenerationInstagramPostBloc,
+        GenerationInstagramPostState>(
+      listener: (context, state) {
+        if (state.imagePromptText.isNotEmpty &&
+            state.descriptionPromptText.isNotEmpty &&
+            state.hashtagsPromptText.isNotEmpty) {
+          isFormValid = true;
+        } else {
+          isFormValid = false;
+        }
       },
+      child: PrimaryButtonWidget(
+        buttonText: 'Gerar Postagem',
+        buttonFunction: () {
+          if (isFormValid) {
+            context
+                .read<GenerationInstagramPostBloc>()
+                .add(const GenerationInstagramSubmitButtonPressedEvent());
+            FocusManager.instance.primaryFocus?.unfocus();
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Você deve preencher todos os campos'),
+              ),
+            );
+          }
+        },
+      ),
     );
   }
 }

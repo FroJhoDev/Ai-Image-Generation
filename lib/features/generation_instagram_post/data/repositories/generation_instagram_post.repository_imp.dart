@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import '../../../../core/service/dio_service.dart';
+import '../../../../core/services/dio_service.dart';
 
 import '../../domain/entities/generation_instagram_post_entity.dart';
 import '../../domain/repositories/generation_instagram_post_repository.dart';

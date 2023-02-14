@@ -6,7 +6,7 @@ import '../bloc/generation_of_images_bloc.dart';
 import '../../data/repositories/generation_of_images_repository_imp.dart';
 import '../../domain/usecases/generation_of_images_usecase.dart';
 import '../../domain/usecases/generation_of_images_usecase_imp.dart';
-import '../../../../core/service/dio_service_imp.dart';
+import '../../../../core/services/dio_service_imp.dart';
 
 class GenerationOfImagesPage extends StatelessWidget {
   GenerationOfImagesPage({super.key});

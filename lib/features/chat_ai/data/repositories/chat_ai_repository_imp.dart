@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import '../../../../core/service/dio_service.dart';
+import '../../../../core/services/dio_service.dart';
 import '../../../../core/config/api_constants.dart';
 
 import '../../../../core/entities/generation_text_completions_entity.dart';

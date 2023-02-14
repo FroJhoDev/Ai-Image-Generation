@@ -2,34 +2,27 @@ import 'package:flutter/material.dart';
 
 import '../styles/color_schema.dart';
 
-class DefaultTextFieldWidget extends StatefulWidget {
+class DefaultTextFieldWidget extends StatelessWidget {
   final String hintText;
   final String labelText;
   final void Function(String)? onChangedFunction;
-  final TextEditingController? textEditingController;
 
-  const DefaultTextFieldWidget({
+  DefaultTextFieldWidget({
     super.key,
     required this.hintText,
     required this.labelText,
     required this.onChangedFunction,
-    this.textEditingController,
   });
 
-  @override
-  State<DefaultTextFieldWidget> createState() => _DefaultTextFieldWidgetState();
-}
-
-class _DefaultTextFieldWidgetState extends State<DefaultTextFieldWidget> {
   final TextEditingController _textEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       decoration: InputDecoration(
-        labelText: widget.labelText,
+        labelText: labelText,
         labelStyle: const TextStyle(color: kPrimaryColor),
-        hintText: widget.hintText,
+        hintText: hintText,
         prefixIcon: InkWell(
             onTap: () => {_textEditingController.clear()},
             child: const Icon(Icons.close, color: kIconButtonColor)),
@@ -40,8 +33,8 @@ class _DefaultTextFieldWidgetState extends State<DefaultTextFieldWidget> {
           borderSide: BorderSide(color: kIconButtonColor),
         ),
       ),
-      controller: widget.textEditingController ?? _textEditingController,
-      onChanged: widget.onChangedFunction,
+      controller: _textEditingController,
+      onChanged: onChangedFunction,
     );
   }
 }

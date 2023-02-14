@@ -26,9 +26,11 @@ class GenerationTextCompletionsBloc extends Bloc<GenerationTextCompletionsEvent,
     GenerationTextFieldChangedEvent event,
     Emitter<GenerationTextCompletionsState> emit,
   ) async {
-    emit(state.copyWith(
-        promptText: event.promptText,
-        status: GenerationTextStatus.writePrompt));
+    emit(
+      state.copyWith(
+          promptText: event.promptText,
+          status: GenerationTextStatus.writePrompt),
+    );
   }
 
   Future<void> _handleGenerationTextSubmitButtonPressedEvent(

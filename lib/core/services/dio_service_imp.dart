@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:ai_image_generetor/core/service/dio_service.dart';
-import 'package:ai_image_generetor/core/config/api_constants.dart';
+
+import 'dio_service.dart';
+import '../config/api_constants.dart';
 
 class DioServiceImp implements DioService {
   @override
