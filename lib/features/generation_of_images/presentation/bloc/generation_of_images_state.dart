@@ -2,6 +2,8 @@ part of 'generation_of_images_bloc.dart';
 
 enum GenerationOfImagesStatus {
   initial,
+  formInvalid,
+  connectedOnMobileData,
   loading,
   success,
   failure,
