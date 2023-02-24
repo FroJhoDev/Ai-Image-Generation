@@ -1,24 +1,27 @@
 import 'dart:convert';
 import 'dart:developer';
 
+
+import '../../../../core/services/http_client_service.dart';
 import '../../../../core/config/api_constants.dart';
 import '../../../../core/entities/generation_text_completions_entity.dart';
 
 import '../models/generation_text_completions_model.dart';
 import '../../domain/repositories/generation_text_completions_repository.dart';
-import '../../../../core/services/dio_service.dart';
 
 class GenerationTextCompletionsRepositoryImp
     implements GenerationTextCompletionsRepository {
-  final DioService _dioService;
-  GenerationTextCompletionsRepositoryImp(this._dioService);
+  final HttpClientService _httpClientService;
+
+  GenerationTextCompletionsRepositoryImp(this._httpClientService);
 
   @override
   Future<String?> generationTextCompletion({required String prompText}) async {
     try {
-      var result = await _dioService.getDio().post(
-        ApiConstants.textCompletionsEndpoint,
-        data: {
+      var result = await _httpClientService.request(
+        url: ApiConstants.textCompletionsEndpoint,
+        method: 'post',
+        body: {
           "model": "text-davinci-003",
           "prompt": prompText,
           "n": 1,
@@ -28,7 +31,7 @@ class GenerationTextCompletionsRepositoryImp
       );
 
       List<GenerationTextCompletionsEntity> generationTextsList =
-          (result.data['choices'] as List)
+          (result['choices'] as List)
               .map((item) =>
                   GenerationTextCompletionsModel.fromJson(json.encode(item)))
               .toList();

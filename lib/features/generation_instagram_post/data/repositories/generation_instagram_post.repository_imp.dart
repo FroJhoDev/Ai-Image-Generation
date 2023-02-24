@@ -1,7 +1,10 @@
 import 'dart:developer';
+import 'package:http/http.dart';
 
 import '../../../../core/services/dio_service.dart';
+import '../../../../core/services/http_client_service_imp.dart';
 
+import '../models/generation_instagram_post_model.dart';
 import '../../domain/entities/generation_instagram_post_entity.dart';
 import '../../domain/repositories/generation_instagram_post_repository.dart';
 
@@ -12,7 +15,6 @@ import '../../../generation_of_images/domain/usecases/generation_of_images_useca
 import '../../../generation_text_completions/data/repositories/generation_text_completions_repository_imp.dart';
 import '../../../generation_text_completions/domain/usecases/generation_text_completions_usecase.dart';
 import '../../../generation_text_completions/domain/usecases/generation_text_completions_usecase_imp.dart';
-import '../models/generation_instagram_post_model.dart';
 
 class GenerationInstagramPostRepositoryImp
     implements GenerationInstagramPostRepository {
@@ -31,7 +33,7 @@ class GenerationInstagramPostRepositoryImp
               GenerationOfImagesRepositoryImp(_dioService));
       final GenerationTextCompletionsUseCase generationTextCompletionsUseCase =
           GenerationTextCompletionsUseCaseImp(
-              GenerationTextCompletionsRepositoryImp(_dioService));
+              GenerationTextCompletionsRepositoryImp(HttpClientServiceImp(Client())));
 
       late String postImage;
       late String postDescription;

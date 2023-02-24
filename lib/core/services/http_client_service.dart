@@ -1,5 +1,18 @@
-import 'package:http/http.dart' show Client;
+enum HttpError {
+  badRequest,
+  notFound,
+  serverError,
+  unauthorized,
+  forbidden,
+  invalidData,
+}
 
 abstract class HttpClientService {
-  Client getHttpClient();
+  Future<dynamic> request({
+    required String url,
+    required String method,
+    Map? body,
+    Map? headers,
+    String? urlBase,
+  });
 }
