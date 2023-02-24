@@ -18,7 +18,7 @@ class GenerationInstagramPostCardResultComponent extends StatelessWidget {
         GenerationInstagramPostState>(
       builder: (context, state) {
         if (state.status == GenerationInstagramPostStatus.loading) {
-          return const CustomCircularProgressWidget();
+          return const Expanded(child: CustomCircularProgressWidget());
         } else if (state.status == GenerationInstagramPostStatus.success) {
           return Expanded(
               child: SingleChildScrollView(

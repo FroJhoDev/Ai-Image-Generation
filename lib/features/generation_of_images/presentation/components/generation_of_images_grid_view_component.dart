@@ -12,7 +12,7 @@ class GenerationOfImagesGridViewComponent extends StatelessWidget {
     return BlocBuilder<GenerationOfImagesBloc, GenerationOfImagesState>(
       builder: (context, state) {
         if (state.status == GenerationOfImagesStatus.loading) {
-          return const CustomCircularProgressWidget();
+          return const Expanded(child: CustomCircularProgressWidget());
         } else if (state.status == GenerationOfImagesStatus.success) {
           final imgGeneratedList = state.listGenerationOfImagesEntity ?? [];
 

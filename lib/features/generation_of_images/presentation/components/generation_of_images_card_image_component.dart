@@ -1,8 +1,10 @@
+import 'package:ai_image_generetor/core/widgets/custom_circular_progress_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../widgets/image_dialog_widget.dart';
 import '../../../../core/helpers/download_image_helper.dart';
+
 class GenerationOfImagesCardImageComponent extends StatelessWidget {
   final String imageUrl;
   const GenerationOfImagesCardImageComponent({
@@ -30,6 +32,10 @@ class GenerationOfImagesCardImageComponent extends StatelessWidget {
               child: Image.network(
                 imageUrl,
                 fit: BoxFit.cover,
+                loadingBuilder: (context, child, loadingProgress) =>
+                    loadingProgress == null
+                        ? child
+                        : const CustomCircularProgressWidget(),
               ),
             ),
           ),

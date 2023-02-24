@@ -1,25 +1,19 @@
 import 'dart:developer';
-import 'package:http/http.dart';
-
-import '../../../../core/services/dio_service.dart';
-import '../../../../core/services/http_client_service_imp.dart';
 
 import '../models/generation_instagram_post_model.dart';
 import '../../domain/entities/generation_instagram_post_entity.dart';
 import '../../domain/repositories/generation_instagram_post_repository.dart';
 
-import '../../../generation_of_images/data/repositories/generation_of_images_repository_imp.dart';
 import '../../../generation_of_images/domain/usecases/generation_of_images_usecase.dart';
-import '../../../generation_of_images/domain/usecases/generation_of_images_usecase_imp.dart';
-
-import '../../../generation_text_completions/data/repositories/generation_text_completions_repository_imp.dart';
 import '../../../generation_text_completions/domain/usecases/generation_text_completions_usecase.dart';
-import '../../../generation_text_completions/domain/usecases/generation_text_completions_usecase_imp.dart';
 
 class GenerationInstagramPostRepositoryImp
     implements GenerationInstagramPostRepository {
-  final DioService _dioService;
-  GenerationInstagramPostRepositoryImp(this._dioService);
+  final GenerationOfImagesUseCase _generationOfImagesUseCase;
+  final GenerationTextCompletionsUseCase _generationTextCompletionsUseCase;
+
+  GenerationInstagramPostRepositoryImp(
+      this._generationOfImagesUseCase, this._generationTextCompletionsUseCase);
 
   @override
   Future<GenerationInstagramPostEntity> generateInstagramPost(
@@ -28,39 +22,38 @@ class GenerationInstagramPostRepositoryImp
     String hashtagsText,
   ) async {
     try {
-      final GenerationOfImagesUseCase generationOfImagesUseCase =
-          GenerationOfImagesUseCaseImp(
-              GenerationOfImagesRepositoryImp(_dioService));
-      final GenerationTextCompletionsUseCase generationTextCompletionsUseCase =
-          GenerationTextCompletionsUseCaseImp(
-              GenerationTextCompletionsRepositoryImp(HttpClientServiceImp(Client())));
-
       late String postImage;
       late String postDescription;
       late String postHashtags;
 
-      await generationOfImagesUseCase
+      await _generationOfImagesUseCase
           .generationImagesFromText(
               prompText: '$imageDescriptionText, sem textos',
               imageResoluion: '512x512',
               imagesAmount: '1')
-          .then((listOfImages) {
-        postImage = listOfImages.first.imageUrl;
-      });
+          .then(
+        (listOfImages) {
+          postImage = listOfImages.first.imageUrl;
+        },
+      );
 
-      await generationTextCompletionsUseCase
+      await _generationTextCompletionsUseCase
           .generationTextCompletion(
               prompText: 'texto chamativo sobre $descriptionText')
-          .then((generationTextForDescription) {
-        postDescription = generationTextForDescription.toString();
-      });
+          .then(
+        (generationTextForDescription) {
+          postDescription = generationTextForDescription.toString();
+        },
+      );
 
-      await generationTextCompletionsUseCase
+      await _generationTextCompletionsUseCase
           .generationTextCompletion(
               prompText: 'hashtags para postagem sobre $hashtagsText')
-          .then((generationTextForDescription) {
-        postHashtags = generationTextForDescription.toString();
-      });
+          .then(
+        (generationTextForDescription) {
+          postHashtags = generationTextForDescription.toString();
+        },
+      );
 
       return GenerationInstagramPostModel(
         imageUrl: postImage,

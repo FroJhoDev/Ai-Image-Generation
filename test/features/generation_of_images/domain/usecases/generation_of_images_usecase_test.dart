@@ -1,12 +1,14 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ai_image_generetor/core/services/dio_service_imp.dart';
+import 'package:http/http.dart';
+
+import 'package:ai_image_generetor/core/services/http_client_service_imp.dart';
 import 'package:ai_image_generetor/features/generation_of_images/data/repositories/generation_of_images_repository_imp.dart';
 import 'package:ai_image_generetor/features/generation_of_images/domain/usecases/generation_of_images_usecase_imp.dart';
 import 'package:ai_image_generetor/features/generation_of_images/domain/repositories/generation_of_images_repository.dart';
 
 void main() {
   GenerationOfImagesRepository generationOfImagesRepository =
-      GenerationOfImagesRepositoryImp(DioServiceImp());
+      GenerationOfImagesRepositoryImp(HttpClientServiceImp(Client()));
 
   test('Deve devolver uma lista não vazia',
       () async {

@@ -18,7 +18,7 @@ class GenerationTextCompletionsRepositoryImp
   @override
   Future<String?> generationTextCompletion({required String prompText}) async {
     try {
-      var result = await _httpClientService.request(
+      var httpResult = await _httpClientService.request(
         url: ApiConstants.textCompletionsEndpoint,
         method: 'post',
         body: {
@@ -31,7 +31,7 @@ class GenerationTextCompletionsRepositoryImp
       );
 
       List<GenerationTextCompletionsEntity> generationTextsList =
-          (result['choices'] as List)
+          (httpResult['choices'] as List)
               .map((item) =>
                   GenerationTextCompletionsModel.fromJson(json.encode(item)))
               .toList();

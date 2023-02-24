@@ -15,7 +15,7 @@ class GenerationTextCompletionsCardResponse extends StatelessWidget {
         GenerationTextCompletionsState>(
       builder: (context, state) {
         if (state.status == GenerationTextStatus.loading) {
-          return const CustomCircularProgressWidget();
+          return const Expanded(child: CustomCircularProgressWidget());
         } else if (state.status == GenerationTextStatus.success) {
           return Expanded(
             child: SingleChildScrollView(
