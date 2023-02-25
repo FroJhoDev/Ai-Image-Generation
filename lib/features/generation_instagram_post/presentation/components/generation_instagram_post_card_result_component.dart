@@ -41,6 +41,10 @@ class GenerationInstagramPostCardResultComponent extends StatelessWidget {
                       Image.network(
                         state.postGenerated!.postImage,
                         fit: BoxFit.contain,
+                        loadingBuilder: (context, child, loadingProgress) =>
+                            loadingProgress == null
+                                ? child
+                                : const CustomCircularProgressWidget(),
                       ),
                       Positioned(
                         top: 5,
